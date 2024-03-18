@@ -35,5 +35,3 @@ function asdf
             command asdf "$command" $argv
     end
 end
-
-source ~/.asdf/asdf.fish
