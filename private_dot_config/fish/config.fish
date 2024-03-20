@@ -5,4 +5,5 @@ end
 export EDITOR=nano
 export VISUAL=nano
 
+starship init fish | source
 source ~/.asdf/asdf.fish
