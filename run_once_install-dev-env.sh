@@ -8,6 +8,9 @@ sudo apt-add-repository ppa:fish-shell/release-3
 sudo apt update
 sudo apt install fish
 
+# Install curl
+sudo apt install curl
+
 # Install starship
 curl -sS https://starship.rs/install.sh | sh
 
@@ -19,3 +22,7 @@ mkdir -p ~/.config/fish/completions; and ln -s ~/.asdf/completions/asdf.fish ~/.
 
 # Install VS Code
 sudo snap install --classic code
+
+# Install Slack
+sudo snap install slack
+
