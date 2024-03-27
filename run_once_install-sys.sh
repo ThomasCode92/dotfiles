@@ -14,8 +14,8 @@ curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 # age
 sudo apt install age
 
-# Bluemail
+# snap packages
 sudo snap install bluemail
-
-# Teams
 sudo snap install teams-for-linux
+sudo snap install whatsapp-for-linux
+sudo snap install spotify
