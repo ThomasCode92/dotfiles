@@ -1,9 +1,5 @@
 #!/bin/sh
 
-# htop
-sudo apt update && sudo apt upgrade
-sudo apt install htop
-
 # Postman CLI
 curl -o- "https://dl-cli.pstmn.io/install/linux64.sh" | sh
 sudo snap install postman
@@ -11,8 +7,11 @@ sudo snap install postman
 # Azure CLI
 curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 
-# age
+# apt packages
+sudo apt update && sudo apt upgrade
+sudo apt install htop
 sudo apt install age
+sudo apt install build-essential
 
 # snap packages
 sudo snap install bluemail
