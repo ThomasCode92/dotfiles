@@ -6,6 +6,7 @@ export PATH="~/.local/bin:$PATH"
 
 export EDITOR=nano
 export VISUAL=nano
+export JAVA_OPTS="$JAVA_OPTS -Dspring.profiles.active=local"
 
 starship init fish | source
 source ~/.asdf/asdf.fish
