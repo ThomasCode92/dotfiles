@@ -12,6 +12,7 @@ sudo apt update && sudo apt upgrade
 sudo apt install htop
 sudo apt install age
 sudo apt install build-essential
+sudo apt install python3.10-venv
 
 # snap packages
 sudo snap install bluemail
