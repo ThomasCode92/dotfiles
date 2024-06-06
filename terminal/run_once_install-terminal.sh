@@ -19,10 +19,3 @@ chsh -s $(which fish)
 
 # Install asdf plugins
 mkdir -p ~/.config/fish/completions; and ln -s ~/.asdf/completions/asdf.fish ~/.config/fish/completions
-
-# Install VS Code
-sudo snap install --classic code
-
-# Install Slack
-sudo snap install slack
-

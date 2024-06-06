@@ -1,6 +1,0 @@
-#!/bin/sh
-
-sudo add-apt-repository universe
-sudo apt install libfuse2
-
-wget -O - https://raw.githubusercontent.com/laurent22/joplin/dev/Joplin_install_and_update.sh | bash
