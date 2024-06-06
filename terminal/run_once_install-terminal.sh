@@ -18,4 +18,5 @@ curl -sS https://starship.rs/install.sh | sh
 chsh -s $(which fish)
 
 # Install asdf plugins
-mkdir -p ~/.config/fish/completions; and ln -s ~/.asdf/completions/asdf.fish ~/.config/fish/completions
+mkdir -p ~/.config/fish/completions
+ln -sf ~/.asdf/completions/asdf.fish ~/.config/fish/completions
