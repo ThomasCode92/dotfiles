@@ -27,7 +27,6 @@ sudo apt install build-essential
 sudo apt install python3.10-venv
 
 # snap packages
-sudo snap install --classic code
 sudo snap install slack
 sudo snap install bluemail
 sudo snap install teams-for-linux
