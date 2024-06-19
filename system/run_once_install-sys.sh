@@ -32,3 +32,4 @@ sudo snap install bluemail
 sudo snap install teams-for-linux
 sudo snap install whatsapp-for-linux
 sudo snap install spotify
+sudo snap install bruno
