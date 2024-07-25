@@ -10,3 +10,4 @@ export JAVA_OPTS="$JAVA_OPTS -Dspring.profiles.active=local"
 
 starship init fish | source
 source ~/.asdf/asdf.fish
+source ~/.asdf/plugins/dotnet/set-dotnet-env.fish
