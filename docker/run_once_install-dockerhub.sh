@@ -1,7 +1,5 @@
 #!/bin/sh
 
-cd ~/Downloads
-
 # Add Docker's official GPG key:
 sudo apt-get update
 sudo apt-get install ca-certificates curl
@@ -17,8 +15,8 @@ echo \
 sudo apt-get update
 
 # Download DEB package
-wget https://desktop.docker.com/linux/main/amd64/149282/docker-desktop-4.30.0-amd64.deb
+wget https://desktop.docker.com/linux/main/amd64/docker-desktop-amd64.deb
 
 # Install package with Apt
 sudo apt-get update
-sudo apt-get install ./docker-desktop-4.30.0-amd64.deb
+sudo apt-get install ./docker-desktop-amd64.deb
