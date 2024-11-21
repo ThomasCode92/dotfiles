@@ -21,4 +21,3 @@ else
     # Clean up downloaded files if checksum verification failed
     rm kubectl kubectl.sha256
 fi
-
