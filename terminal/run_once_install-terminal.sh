@@ -7,6 +7,7 @@ git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.0
 sudo apt-add-repository ppa:fish-shell/release-3
 sudo apt update
 sudo apt install fish
+sudo apt install tmux
 
 # Install curl
 sudo apt install curl
