@@ -5,7 +5,6 @@ end
 export PATH="~/.local/bin:$PATH"
 
 starship init fish | source
-
 source ~/.asdf/asdf.fish
 
 export EDITOR=nano
