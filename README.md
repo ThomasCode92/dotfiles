@@ -37,12 +37,28 @@ _coming soon_
 
 ### Tools, Plugins and Commands ⚡⌨️
 
+To install a new plugin (e.g. [autopair.fish](https://github.com/jorgebucaran/autopair.fish)), simply follow these steps:
+
+```bash
+chezmoi edit $__fish_config_dir/fish_plugins --apply # add jorgebucaran/autopair.fish
+chezmoi apply
+```
+
 ### Terminal (Kitty, for now) 🖥️🐈
 
-## Neovim and Tmux 📜🌀
+## Neovim and tmux 📜🌀
 
 _coming soon_
 
 ## Overall Theming 🌃🎴
 
 _More about Tokyo Night coming soon_
+
+## Resources 📚🔗
+
+### 📚🔗 Resources
+
+- **Fish Shell**: [Official Website](https://fishshell.com/) - [Documentation](https://fishshell.com/docs/current/)
+- **Starship**: [Official Website](https://starship.rs/) - [Configuration](https://starship.rs/config/)
+- **Fisher**: [Fisher GitHub](https://github.com/jorgebucaran/fisher)
+- **Chezmoi**: [Official Website](https://www.chezmoi.io/) - [GitHub Repository](https://github.com/twpayne/chezmoi)
