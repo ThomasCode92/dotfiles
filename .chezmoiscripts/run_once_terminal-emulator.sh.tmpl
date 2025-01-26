@@ -1,5 +1,12 @@
 #!/usr/bin/env fish
 
+{{ if .isWorkComputer }}
+echo "Installing terminal emulators..."
+{{ else }}
+echo "Installing terminal emulators skipped!"
+return
+{{ end }}
+
 ## install kitty
 if not command -v kitty >/dev/null; then
     echo "Installing kitty..."
