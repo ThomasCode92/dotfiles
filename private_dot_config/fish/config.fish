@@ -8,5 +8,5 @@ export PATH="~/.local/bin:$PATH"
 starship init fish | source
 source ~/.asdf/asdf.fish
 
-export EDITOR=nano
-export VISUAL=nano
+export EDITOR=nvim
+export VISUAL=nvim
