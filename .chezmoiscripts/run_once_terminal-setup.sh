@@ -4,6 +4,7 @@
 sudo apt install fzf
 sudo apt install fd-find
 sudo apt install bat
+sudo apt install fastfetch
 
 ## Install starship
 if ! command -v starship >/dev/null 2>&1; then
