@@ -40,3 +40,12 @@ else
     echo "asdf already installed, installation skipped"
     echo "version: $(asdf --version)"
 fi
+
+## Install Tmux Plugin Manager
+if [ ! -e  ~/.tmux/plugins/ ]; then
+    echo "Install tpm..."
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+else
+    echo "tmp already installed, installation skipped"
+fi
+
