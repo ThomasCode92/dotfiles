@@ -7,6 +7,7 @@ sudo apt install bat
 sudo apt install fastfetch
 sudo apt install tmux
 sudo apt install neovim
+sudo apt install ripgrep
 
 ## Install starship
 if ! command -v starship >/dev/null 2>&1; then
