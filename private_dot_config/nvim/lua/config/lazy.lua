@@ -22,29 +22,21 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
 -- Setup lazy.nvim
-require("lazy").setup({
-  spec = {
-    -- import your plugins
-    { "folke/tokyonight.nvim", lazy = false, priority = 1000, opts = {}, },
-    {
-      'nvim-telescope/telescope.nvim', tag = '0.1.8',
-      dependencies = { 'nvim-lua/plenary.nvim' }
-    },
-    { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
-    {
-      "nvim-neo-tree/neo-tree.nvim",
-      branch = "v3.x",
-      dependencies = {
-        "nvim-lua/plenary.nvim",
-        "nvim-tree/nvim-web-devicons",
-        "MunifTanjim/nui.nvim",
-      }
-    },
-  },
-  -- Configure any other settings here. See the documentation for more details.
-  -- colorscheme that will be used when installing plugins.
-  install = { colorscheme = { "habamax" } },
-  -- automatically check for plugin updates
-  checker = { enabled = true },
+require("lazy").setup("plugins")
+
+-- telescoop
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
+
+-- treesitter
+local config = require('nvim-treesitter.configs')
+config.setup({
+  ensure_installed = { "lua", "javascript" },
+  highlight = { enable = true },
+  indent = { enable = true },
 })
+
+-- neo tree
+vim.keymap.set('n', '<leader>n', ':Neotree filesystem reveal right<CR>')
 
