@@ -25,9 +25,13 @@ if [ ! -e ~/.local/bin/bat ]; then
     ln -s /usr/bin/batcat ~/.local/bin/bat
 
     mkdir -p "$(bat --config-dir)/themes"
-    cd "$(bat --config-dir)/themes"
-    curl -O https://github.com/folke/tokyonight.nvim/blob/main/extras/sublime/tokyonight_night.tmTheme bat cache --build
-    echo "bat configured and tokyonight_night theme set" 
+    wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Latte.tmTheme
+    wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Frappe.tmTheme
+    wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Macchiato.tmTheme
+    wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Mocha.tmTheme
+    bat cache --build
+
+    echo "bat configured and catppuccin theme set" 
 else
     echo "bat already configured, configuration skipped"
     echo "version: $(bat --version)"
