@@ -56,13 +56,11 @@ chezmoi apply
 
 _coming soon_
 
-## Overall Theming 🌃🎴
+## Overall Theming 🎨🍮
 
-_More about Tokyo Night coming soon_
+The [Catppuccin](https://github.com/catppuccin/catppuccin) theme is a popular, soothing pastel color scheme with variants like Latte, Frappé, Macchiato, and Mocha to suit different preferences. It’s highly versatile, supporting code editors (VS Code, Neovim), terminals (Kitty, Ghostty), browsers (Firefox, Chrome), and more, ensuring a consistent look across tools. Its open-source, community-driven nature means frequent updates and ports for new applications. Easy to install and customize, Catppuccin is ideal for developers and designers seeking a modern, cohesive, and aesthetically pleasing theme for long work sessions. Its popularity and community support, makes it a top choice for workflow customization.
 
 ## Resources 📚🔗
-
-### 📚🔗 Resources
 
 - **Fish Shell**: [Official Website](https://fishshell.com/) - [Documentation](https://fishshell.com/docs/current/)
 - **Starship**: [Official Website](https://starship.rs/) - [Configuration](https://starship.rs/config/)
