@@ -11,6 +11,10 @@ return {
   },
   {
     "hrsh7th/nvim-cmp",
+    dependencies = {
+      "tailwind-tools",
+      "onsails/lspkind-nvim",
+    },
     config = function()
       local cmp = require("cmp")
       require("luasnip.loaders.from_vscode").lazy_load()
@@ -39,6 +43,11 @@ return {
         }, {
           { name = "buffer" },
         }),
+        formatting = {
+          format = require("lspkind").cmp_format({
+            before = require("tailwind-tools.cmp").lspkind_format,
+          }),
+        },
       })
     end,
   },
