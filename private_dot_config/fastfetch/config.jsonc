@@ -1,8 +1,9 @@
 {
   "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
   "logo": {
-    "source": "ubuntu_small",
-    "padding": { "top": 2, "right": 5, "left": 5 }
+    "type": "small",
+    "color": { "1": "white" },
+    "padding": { "top": 2, "right": 5, "left": 5 },
   },
   "modules": [
     "title",
@@ -20,6 +21,6 @@
     "localip",
     "poweradapter",
     "break",
-    "colors"
-  ]
+    "colors",
+  ],
 }
