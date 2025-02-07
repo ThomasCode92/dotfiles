@@ -6,7 +6,6 @@ sudo apt install fd-find
 sudo apt install bat
 sudo apt install fastfetch
 sudo apt install tmux
-sudo apt install neovim
 sudo apt install ripgrep
 
 ## Install starship
