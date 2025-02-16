@@ -18,6 +18,9 @@ sudo chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.lis
 sudo apt update
 sudo apt install -y eza
 
+## Setup for fd
+ln -s $(which fdfind) ~/.local/bin/fd
+
 ## Setup for bat
 echo "Setting up bat..."
 mkdir -p ~/.local/bin
