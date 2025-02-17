@@ -6,12 +6,15 @@ end
 export PATH="~/.local/bin:$PATH"
 
 starship init fish | source
+fzf --fish | source
+zoxide init fish | source
 source ~/.asdf/asdf.fish
 
 export EDITOR=nvim
 export VISUAL=nvim
 
 alias ls="eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions"
+alias cd="z"
 
 # Custom settings for fzf.fish
 set --export -gx $EDITOR "nvim" # or "vim", or "code", etc.

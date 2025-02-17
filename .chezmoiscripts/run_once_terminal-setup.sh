@@ -36,3 +36,8 @@ bat cache --build
 
 echo "bat configured and catppuccin theme set" 
 echo "version: $(bat --version)"
+
+## Install zoxide
+echo "Installing zoxide..."
+curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
+echo "zoxide version: $(zoxide --version)"
