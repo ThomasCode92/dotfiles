@@ -1,6 +1,5 @@
 if status is-interactive
     # Commands to run in interactive sessions can go here
-    fastfetch
 end
 
 export PATH="~/.local/bin:$PATH"
@@ -32,7 +31,7 @@ export FZF_CTRL_T_OPTS="--preview 'bat -n --color=always --line-range :500 {}'"
 export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
 
 # Custom settings for fzf.fish
-set --export -gx $EDITOR "nvim" # or "vim", or "code", etc.
-set --export fzf_directory_opts --bind "ctrl-o:execute($EDITOR {} &> /dev/tty)"
+set -gx $EDITOR "nvim" # or "vim", or "code", etc.
+set fzf_directory_opts --bind "ctrl-o:execute($EDITOR {} &> /dev/tty)"
 set fzf_fd_opts --hidden --max-depth 2
 set fzf_preview_dir_cmd eza --all --color=always --icons=always
