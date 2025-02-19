@@ -15,10 +15,18 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- Setup lazy.nvim
-require("lazy").setup({
-  spec = { { import = "plugins" }, { import = "plugins.lsp" } },
-  change_detection = { notify = false },
-  install = { colorscheme = { "habamax" } },
-  checker = { enabled = true, notify = false },
-})
+if vim.g.vscode then
+  print("Running in vscode, skipping lazy.nvim setup")
+  require("lazy").setup({
+    "kylechui/nvim-surround",
+    config = true,
+  })
+else
+  -- Setup lazy.nvim
+  require("lazy").setup({
+    spec = { { import = "plugins" }, { import = "plugins.lsp" } },
+    change_detection = { notify = false },
+    install = { colorscheme = { "habamax" } },
+    checker = { enabled = true, notify = false },
+  })
+end
