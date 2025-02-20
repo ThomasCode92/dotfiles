@@ -37,6 +37,7 @@ return {
         "prettier", -- prettier formatter
         "stylua", -- lua formatter
         "eslint_d", -- eslint language server
+        "js-debug-adapter", -- js debug adapter
       },
     })
   end,
