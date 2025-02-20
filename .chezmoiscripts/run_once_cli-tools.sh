@@ -5,11 +5,6 @@ for pkg in fzf fd-find bat fastfetch ripgrep; do
     sudo apt install -y $pkg
 done
 
-## Install starship
-echo "Installing starship..."
-curl -sS https://starship.rs/install.sh | sh
-echo "Starship version: $(starship --version)"
-
 ## Install eza
 sudo mkdir -p /etc/apt/keyrings
 wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc | sudo gpg --dearmor -o /etc/apt/keyrings/gierens.gpg

@@ -1,0 +1,23 @@
+#!/usr/bin/env fish
+
+{{ if .isWorkComputer }}
+echo "Installing terminal emulators..."
+{{ else }}
+echo "Installing terminal emulators skipped!"
+return
+{{ end }}
+
+## Install starship
+echo "Installing starship..."
+curl -sS https://starship.rs/install.sh | sh
+echo "Starship version: $(starship --version)"
+
+## Install kitty
+echo "Installing kitty..."
+curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
+echo "Kitty installed, version: $(kitty --version)"
+
+## Install ghostty
+echo "Installing ghostty..."
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/mkasberg/ghostty-ubuntu/HEAD/install.sh)"
+echo "Ghostty installed, version: $(ghostty --version)"
