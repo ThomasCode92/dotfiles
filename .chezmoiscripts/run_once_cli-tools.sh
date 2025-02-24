@@ -7,7 +7,7 @@ is_package_installed() {
 }
 
 ## List of packages to install
-packages=("fzf" "fd-find" "bat" "fastfetch" "ripgrep" "eza")
+packages=("fzf" "fd-find" "bat" "fastfetch" "ripgrep" "eza" "jq")
 
 ## Install packages
 for pkg in "${packages[@]}"; do
@@ -21,7 +21,7 @@ for pkg in "${packages[@]}"; do
       sudo chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list
       sudo apt update
     fi
-    
+
     ### Install the package
     sudo apt install -y "$pkg"
 
@@ -51,4 +51,19 @@ if ! command -v zoxide &> /dev/null; then
   curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
 else
   echo "Installation for zoxide is skipped, was already installed."
+fi
+
+## Install Yazi
+if ! command -v yazi &> /dev/null; then
+  if command -v rustup &> /dev/null; then
+    echo "Installing Yazi..."
+    git clone http://github.com/sxyazi/yazi.git
+    cd yazi
+    cargo build --release --locked
+    mv target/release/yazi target/release/ya /usr/local/bin/
+  else
+    echo "Rustup is not installed, skipping Yazi installation."
+  fi
+else
+  echo "Installation for Yazi is skipped, was already installed."
 fi
