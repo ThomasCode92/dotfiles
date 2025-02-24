@@ -1,5 +1,5 @@
 if status is-interactive
-    # Commands to run in interactive sessions can go here
+  # Commands to run in interactive sessions can go here
 end
 
 export PATH="~/.local/bin:$PATH"
@@ -30,8 +30,18 @@ set -g FZF_CTRL_T_COMMAND "command fd -L --type f --hidden --follow --exclude .g
 export FZF_CTRL_T_OPTS="--preview 'bat -n --color=always --line-range :500 {}'"
 export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
 
-# Custom settings for fzf.fish
+# --- custom settings for fzf.fish ---
 set -gx $EDITOR "nvim" # or "vim", or "code", etc.
 set fzf_directory_opts --bind "ctrl-o:execute($EDITOR {} &> /dev/tty)"
 set fzf_fd_opts --hidden --max-depth 2
 set fzf_preview_dir_cmd eza --all --color=always --icons=always
+
+# --- shell wrapper for Yazi ---
+function y
+  set tmp (mktemp -t "yazi-cwd.XXXXXX")
+  yazi $argv --cwd-file="$tmp"
+  if set cwd (command cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
+    builtin cd -- "$cwd"
+  end
+  rm -f -- "$tmp"
+end
