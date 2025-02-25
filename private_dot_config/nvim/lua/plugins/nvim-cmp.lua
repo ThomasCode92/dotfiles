@@ -42,6 +42,7 @@ return {
         { name = "buffer" }, -- text within current buffer
         { name = "path" }, -- file system paths
       }),
+      ---@diagnostic disable-next-line: missing-fields
       formatting = {
         format = require("lspkind").cmp_format({
           maxwidth = 50,
@@ -50,5 +51,20 @@ return {
         }),
       },
     })
+
+    -- set keymaps
+    local keymap = vim.keymap -- for conciseness
+
+    keymap.set({ "i", "s" }, "<Leader><Tab>", function()
+      if luasnip.jumpable(1) then
+        luasnip.jump(1)
+      end
+    end, { silent = true, desc = "jump to next" })
+
+    keymap.set({ "i", "s" }, "<Leader><S-Tab>", function()
+      if luasnip.jumpable(-1) then
+        luasnip.jump(-1)
+      end
+    end, { silent = true })
   end,
 }
