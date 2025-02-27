@@ -1,3 +1,6 @@
+-- More information about classRegex:
+-- https://github.com/luckasRanarison/tailwind-tools.nvim/issues/58#issuecomment-2480253763
+
 return {
   "luckasRanarison/tailwind-tools.nvim",
   name = "tailwind-tools",
@@ -7,5 +10,15 @@ return {
     "nvim-telescope/telescope.nvim", -- optional
     "neovim/nvim-lspconfig", -- optional
   },
-  opts = {}, -- your configuration
+  opts = {
+    server = {
+      settings = {
+        experimental = {
+          classRegex = {
+            { "[cC]lasses\\s*\\+?=\\s*([^;]*);", "['\"`]([^'\"`]*)['\"`]" },
+          },
+        },
+      },
+    },
+  },
 }
