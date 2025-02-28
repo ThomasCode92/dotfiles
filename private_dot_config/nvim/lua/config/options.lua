@@ -40,3 +40,7 @@ opt.splitbelow = true -- split horizontal window to the bottom
 
 -- turn off swapfile
 opt.swapfile = false
+
+-- switch off mouse support and arrow keys
+opt.mouse = ""
+opt.mousescroll = "ver:0,hor:0"

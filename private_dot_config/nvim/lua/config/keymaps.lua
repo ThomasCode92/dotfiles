@@ -16,6 +16,10 @@ keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
 keymap.set("n", "<leader>+", "<C-a>", { desc = "Increment number" })
 keymap.set("n", "<leader>-", "<C-x>", { desc = "Decrement number" })
 
+-- move code blocks
+keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move block down" })
+keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move block up" })
+
 -- window management
 keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" })
 keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" })
@@ -27,3 +31,9 @@ keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close current tab" 
 keymap.set("n", "<leader>tn", "<cmd>tabn<CR>", { desc = "Go to next tab" })
 keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab" })
 keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" })
+
+-- disable arrow key
+keymap.set({ "n", "i", "v" }, "<up>", "<nop>", { noremap = true })
+keymap.set({ "n", "i", "v" }, "<down>", "<nop>", { noremap = true })
+keymap.set({ "n", "i", "v" }, "<left>", "<nop>", { noremap = true })
+keymap.set({ "n", "i", "v" }, "<right>", "<nop>", { noremap = true })
