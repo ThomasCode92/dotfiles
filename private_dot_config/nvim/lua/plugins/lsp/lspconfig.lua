@@ -84,17 +84,9 @@ return {
         lspconfig["vtsls"].setup({
           capabilities = capabilities,
           on_attach = function(client, bufnr)
-            vim.api.nvim_create_autocmd("BufWritePre", {
-              buffer = bufnr,
-              -- group = vim.api.nvim_create_augroup("actions", {}),
-              callback = function()
-                vim.lsp.buf.code_action({
-                  context = { only = { "source.organizeImports" } },
-                  apply = true,
-                })
-                vim.wait(100)
-              end,
-            })
+            vim.keymap.set({ "n", "v" }, "<leader>co", function()
+              vim.lsp.buf.code_action({ context = { only = { "source", "refactor", "quickfix" } } })
+            end, { desc = "See all TypeScipt Code Actions" })
           end,
         })
       end,
