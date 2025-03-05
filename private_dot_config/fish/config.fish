@@ -2,18 +2,24 @@ if status is-interactive
   # Commands to run in interactive sessions can go here
 end
 
-export PATH="~/.local/bin:$PATH"
+# --- swith caps lock and ctrl ---
+setxkbmap -option ctrl:swapcaps
 
+# --- source applications ---
 starship init fish | source
 fzf --fish | source
 zoxide init fish | source
 source ~/.asdf/asdf.fish
 
+# --- environment variables ---
+export PATH="~/.local/bin:$PATH"
 export EDITOR=nvim
 export VISUAL=nvim
 
+# --- aliases ---
 alias ls="eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions"
 alias cd="z"
+alias lg="lazygit"
 
 # --- setup fzf theme ---
 set fg "#CDD6F4"            # Text
