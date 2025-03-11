@@ -28,6 +28,22 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 rustup update
 ```
 
+#### Password Manager Setup 🔐🗝️
+
+Create a folder `backup-keys` in the home directory to store GPG keys. Past the private and public keys as `private-key.asc` and `public-key.asc`, respectively. Then, import these keys into the GPG keyring with the following commands:
+
+```bash
+# Import GPG keys
+gpg --import ~/backup-keys/private-key.asc
+gpg --import ~/backup-keys/public-key.asc
+
+# Export the key ID for initial setup
+gpg -K  # Locate and copy the key ID for password management
+export PASS_GPG_KEY=<PASS_GPG_KEY>
+```
+
+Replace `<PASS_GPG_KEY>` with the actual key ID copied from the previous command.
+
 ### Syncing Dotfiles with Chezmoi 🔄📁
 
 ```bash
