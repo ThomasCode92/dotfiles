@@ -30,7 +30,8 @@ rustup update
 
 #### Password Manager Setup 🔐🗝️
 
-Create a folder `backup-keys` in the home directory to store GPG keys. Past the private and public keys as `private-key.asc` and `public-key.asc`, respectively. Then, import these keys into the GPG keyring with the following commands:
+A _password manager_, called [`pass`](https://www.passwordstore.org/), will be used to manage encrypted passwords and API keys. These will be stored in a local directory at `~/.password-store`. The password store will be initialized during `chezmoi init`, but GPG keys must be imported beforehand.
+To handle GPG keys, create a `backup-keys` folder in the directory. Save the private and public keys as `private-key.asc` and `public-key.asc`, respectively. Then, import the keys into your GPG keyring using the following commands:
 
 ```bash
 # Import GPG keys
