@@ -28,6 +28,23 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 rustup update
 ```
 
+#### Password Manager Setup 🔐🗝️
+
+A _password manager_, called [`pass`](https://www.passwordstore.org/), will be used to manage encrypted passwords and API keys. These will be stored in a local directory at `~/.password-store`. The password store will be initialized during `chezmoi init`, but GPG keys must be imported beforehand.
+To handle GPG keys, create a `backup-keys` folder in the directory. Save the private and public keys as `private-key.asc` and `public-key.asc`, respectively. Then, import the keys into your GPG keyring using the following commands:
+
+```bash
+# Import GPG keys
+gpg --import ~/backup-keys/private-key.asc
+gpg --import ~/backup-keys/public-key.asc
+
+# Export the key ID for initial setup
+gpg -K  # Locate and copy the key ID for password management
+export PASS_GPG_KEY=<PASS_GPG_KEY>
+```
+
+Replace `<PASS_GPG_KEY>` with the actual key ID copied from the previous command.
+
 ### Syncing Dotfiles with Chezmoi 🔄📁
 
 ```bash

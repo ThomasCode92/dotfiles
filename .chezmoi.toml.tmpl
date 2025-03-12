@@ -1,4 +1,6 @@
 {{- $isWorkComputer := promptBoolOnce . "isWorkComputer" "Is this your work computer" -}}
 
+[hooks.read-source-state.pre]
+    command = ".local/share/chezmoi/.install-password-manager.sh"
 [data]
     isWorkComputer = {{ $isWorkComputer }}
