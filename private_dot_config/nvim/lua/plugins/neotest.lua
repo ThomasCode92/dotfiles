@@ -31,7 +31,7 @@ return {
     neotest.setup({
       adapters = {
         require("neotest-vitest")({
-          cwd = get_root_dir(),
+          cwd = get_root_dir,
           filter_dir = function(name, rel_path, root)
             return name ~= "node_modules"
           end,
