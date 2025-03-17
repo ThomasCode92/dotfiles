@@ -11,6 +11,7 @@ return {
         highlight = { enable = true },
         indent = { enable = true },
         ensure_installed = {
+          "astro",
           "json",
           "javascript",
           "typescript",
