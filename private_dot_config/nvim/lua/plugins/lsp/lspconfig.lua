@@ -60,11 +60,24 @@ return {
 
         opts.desc = "Restart LSP"
         keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
+
+        if vim.lsp.inlay_hint then
+          opts.desc = "Toggle inlay hints"
+          vim.keymap.set("n", "<leader>uh", function()
+            vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+          end, opts) -- mapping to toggle inlay hints
+        end
       end,
     })
 
     -- used to enable autocompletion (assign to every lsp server config)
     local capabilities = cmp_nvim_lsp.default_capabilities()
+
+    -- inlay hints for typescript
+    local inlay_hints = {
+      parameterNames = { enabled = "all" },
+      suppressWhenTypeMatchesName = false,
+    }
 
     -- Change the Diagnostic symbols in the sign column (gutter)
     local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
@@ -81,13 +94,21 @@ return {
         })
       end,
       ["vtsls"] = function()
+        -- configure typescript language server
         lspconfig["vtsls"].setup({
           capabilities = capabilities,
+          settings = { typescript = { inlayHints = inlay_hints } },
           on_attach = function(client, bufnr)
             vim.keymap.set({ "n", "v" }, "<leader>co", function()
               vim.lsp.buf.code_action({ context = { only = { "source", "refactor", "quickfix" } } })
             end, { desc = "See all TypeScipt Code Actions" })
           end,
+        })
+      end,
+      ["astro"] = function()
+        lspconfig["astro"].setup({
+          capabilities = capabilities,
+          settings = { typescript = { inlayHints = inlay_hints } },
         })
       end,
       ["emmet_ls"] = function()
@@ -106,6 +127,7 @@ return {
               -- make the language server recognize "vim" global
               diagnostics = { globals = { "vim" } },
               completion = { callSnippet = "Replace" },
+              hint = { enable = true, arrayIndex = "Disable" },
             },
           },
         })
