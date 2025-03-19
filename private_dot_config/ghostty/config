@@ -1,5 +1,7 @@
 theme = catppuccin-macchiato
-background-opacity = 0.95
+background-opacity = 1
+
+font-feature = -calt
 
 window-padding-y = 0
 window-padding-balance = true
