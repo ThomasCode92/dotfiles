@@ -1,0 +1,8 @@
+#!/usr/bin/bash
+
+{{ if .isWorkComputer }}
+echo "Setting up GNOME extensions..."
+dconf load /org/gnome/shell/extensions/ < ~/gnome_extensions.txt
+{{ else }}
+echo "Setting up GNOME extensions skipped!"
+{{ end }}
