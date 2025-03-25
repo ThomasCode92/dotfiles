@@ -75,7 +75,13 @@ chezmoi apply
 
 ## Neovim and tmux 📜🌀
 
-_coming soon_
+### LazyVim 💤
+
+This setup includes [LazyVim](https://www.lazyvim.org/) , a Neovim distribution that enhances the editing experience with smart defaults, performance optimizations, and a modular plugin system. By leveraging _lazy-loading_, it ensures minimal startup times while delivering a powerful, IDE-like environment. Built-in support for _LSP's_, _Treesitter_, and a variety of productivity tools provides a seamless development experience right out of the box.
+
+### tmux 📟
+
+[Tmux](https://github.com/tmux/tmux/wiki) is a terminal multiplexer that enables managing multiple terminal sessions within a single window. It allows splitting windows into panes, creating persistent sessions, and seamlessly switching between tasks. This is especially useful for workflow efficiency, as sessions can be detached and resumed later, even after disconnecting. Tmux integrates well with Neovim, making navigation between code, terminals, and other tools smooth. Custom configurations enhance usability with keybindings, themes, and status bar customizations.
 
 ## Overall Theming 🎨🍮
 
