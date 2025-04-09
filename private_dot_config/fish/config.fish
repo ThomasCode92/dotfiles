@@ -1,5 +1,5 @@
 if status is-interactive
-  # Commands to run in interactive sessions can go here
+    # Commands to run in interactive sessions can go here
 end
 
 # --- swith caps lock and ctrl ---
@@ -21,14 +21,15 @@ set -x OPENAI_API_KEY (pass show openai/api_key | head -n 1)
 alias ls="eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions"
 alias cd="z"
 alias lg="lazygit"
+alias ld="lazydocker"
 
 # --- setup fzf theme ---
-set fg "#CDD6F4"            # Text
-set bg "#1E1E2E"            # Background
-set bg_highlight "#313244"  # Selection background
-set purple "#CBA6F7"        # Mauve
-set blue "#89B4FA"          # Blue
-set cyan "#94E2D5"          # Teal
+set fg "#CDD6F4" # Text
+set bg "#1E1E2E" # Background
+set bg_highlight "#313244" # Selection background
+set purple "#CBA6F7" # Mauve
+set blue "#89B4FA" # Blue
+set cyan "#94E2D5" # Teal
 
 # --- setup fzf options ---
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
@@ -38,17 +39,17 @@ export FZF_CTRL_T_OPTS="--preview 'bat -n --color=always --line-range :500 {}'"
 export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
 
 # --- custom settings for fzf.fish ---
-set -gx $EDITOR "nvim" # or "vim", or "code", etc.
+set -gx $EDITOR nvim # or "vim", or "code", etc.
 set fzf_directory_opts --bind "ctrl-o:execute($EDITOR {} &> /dev/tty)"
 set fzf_fd_opts --hidden --max-depth 5
 set fzf_preview_dir_cmd eza --all --color=always --icons=always
 
 # --- shell wrapper for Yazi ---
 function y
-  set tmp (mktemp -t "yazi-cwd.XXXXXX")
-  yazi $argv --cwd-file="$tmp"
-  if set cwd (command cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
-    builtin cd -- "$cwd"
-  end
-  rm -f -- "$tmp"
+    set tmp (mktemp -t "yazi-cwd.XXXXXX")
+    yazi $argv --cwd-file="$tmp"
+    if set cwd (command cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
+        builtin cd -- "$cwd"
+    end
+    rm -f -- "$tmp"
 end
