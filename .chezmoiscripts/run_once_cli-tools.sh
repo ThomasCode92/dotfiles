@@ -2,19 +2,20 @@
 
 ## Function to check if a package is installed
 is_package_installed() {
-  dpkg -l | grep "$1" &> /dev/null
+  dpkg -l | grep "$1" &>/dev/null
   return $?
 }
 
 ## List of packages to install
-packages=("fzf" "fd-find" "bat" "fastfetch" "ripgrep" "eza" "jq")
+packages=("fzf" "fd-find" "bat" "fastfetch" "ripgrep" "eza" "jq" "ffmpeg")
 
 ## Install packages
 for pkg in "${packages[@]}"; do
   if ! is_package_installed "$pkg"; then
     echo "Installing $pkg..."
+
+    ### Special handling for eza
     if [[ "$pkg" == "eza" ]]; then
-      ### Special handling for eza
       sudo mkdir -p /etc/apt/keyrings
       wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc | sudo gpg --dearmor -o /etc/apt/keyrings/gierens.gpg
       echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" | sudo tee /etc/apt/sources.list.d/gierens.list
@@ -23,7 +24,7 @@ for pkg in "${packages[@]}"; do
     fi
 
     ### Install the package
-    sudo apt install -y "$pkg"
+    sudo apt install -y $pkg
 
     ### Post installation setup
     if [[ "$pkg" == "fd-find" ]]; then
@@ -40,13 +41,15 @@ for pkg in "${packages[@]}"; do
       wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Mocha.tmTheme
       bat cache --build
     fi
-  else 
+
+    echo "$pkg installed successfully."
+  else
     echo "Installation for $pkg is skipped, was already installed."
   fi
 done
 
 ## Install zoxide
-if ! command -v zoxide &> /dev/null; then
+if ! command -v zoxide &>/dev/null; then
   echo "Installing zoxide..."
   curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
 else
@@ -54,8 +57,8 @@ else
 fi
 
 ## Install Yazi
-if ! command -v yazi &> /dev/null; then
-  if command -v rustup &> /dev/null; then
+if ! command -v yazi &>/dev/null; then
+  if command -v rustup &>/dev/null; then
     echo "Installing Yazi..."
     git clone http://github.com/sxyazi/yazi.git
     cd yazi
