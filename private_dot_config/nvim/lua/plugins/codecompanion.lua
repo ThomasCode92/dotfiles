@@ -8,8 +8,6 @@ return {
     event = "VeryLazy",
     opts = {},
     dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
       "j-hui/fidget.nvim",
     },
     config = function(_, opts)
