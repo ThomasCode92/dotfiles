@@ -1,6 +1,10 @@
 {{- $isWorkComputer := promptBoolOnce . "isWorkComputer" "Is this your work computer" -}}
+{{- $gitUserName := promptStringOnce . "gitUserName" "What is your git user name" -}}
+{{- $gitUserEmail := promptStringOnce . "gitUserEmail" "What is your git user email" -}}
 
 [hooks.read-source-state.pre]
     command = ".local/share/chezmoi/.install-password-manager.sh"
 [data]
     isWorkComputer = {{ $isWorkComputer }}
+    gitUserName = "{{ $gitUserName }}"
+    gitUserEmail = "{{ $gitUserEmail }}"
