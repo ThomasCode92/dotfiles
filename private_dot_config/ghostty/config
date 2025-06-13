@@ -1,6 +1,7 @@
-theme = catppuccin-macchiato
+theme = GitHub-Dark-Default
 background-opacity = 1
 
+# disable programming ligatures
 font-feature = -calt
 
 window-padding-y = 0

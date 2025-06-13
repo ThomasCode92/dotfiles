@@ -3,7 +3,7 @@
   "logo": {
     "type": "small",
     "color": { "1": "white" },
-    "padding": { "top": 2, "right": 5, "left": 5 },
+    "padding": { "top": 2, "right": 5, "left": 5 }
   },
   "modules": [
     "title",
@@ -21,6 +21,6 @@
     "localip",
     "poweradapter",
     "break",
-    "colors",
-  ],
+    "colors"
+  ]
 }

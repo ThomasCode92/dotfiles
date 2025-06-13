@@ -2,7 +2,7 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 
-# --- swith caps lock and ctrl ---
+# --- switch caps lock and ctrl ---
 setxkbmap -option ctrl:swapcaps
 
 # --- source applications ---
@@ -23,17 +23,9 @@ alias cd="z"
 alias lg="lazygit"
 alias ld="lazydocker"
 
-# --- setup fzf theme ---
-set fg "#CDD6F4" # Text
-set bg "#1E1E2E" # Background
-set bg_highlight "#313244" # Selection background
-set purple "#CBA6F7" # Mauve
-set blue "#89B4FA" # Blue
-set cyan "#94E2D5" # Teal
-
 # --- setup fzf options ---
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
-export FZF_DEFAULT_OPTS="--color=fg:$fg,bg:$bg,hl:$purple,fg+:$fg,bg+:$bg_highlight,hl+:$purple,info:$blue,prompt:$cyan,pointer:$cyan,marker:$cyan,spinner:$cyan,header:$cyan --style=full --height=40% --tmux=80% --layout=reverse --preview 'bat -n --color=always --line-range :500 {}'"
+export FZF_DEFAULT_OPTS="--style=full --height=40% --tmux=80% --layout=reverse --preview 'bat -n --color=always --line-range :500 {}'"
 set -g FZF_CTRL_T_COMMAND "command fd -L --type f --hidden --follow --exclude .git . \$dir"
 export FZF_CTRL_T_OPTS="--preview 'bat -n --color=always --line-range :500 {}'"
 export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
