@@ -16,9 +16,10 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 if vim.g.vscode then
-    print("Running in vscode...")
+    print("Setting up lazy.nvim for VSCode Neovim extension...")
+    require("config.keymaps_vscode") -- VSCode specific keymaps
     require("lazy").setup({
-        spec = { { import = "plugins.mini" }, },
+        spec = { { import = "plugins.mini" }, { import = "plugins.hardtime" } },
         change_detection = { notify = false },
     })
 else
