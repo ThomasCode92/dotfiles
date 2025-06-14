@@ -5,6 +5,9 @@ end
 # --- switch caps lock and ctrl ---
 setxkbmap -option ctrl:swapcaps
 
+# --- set the key bindings to use vi mode ---
+fish_vi_key_bindings
+
 # --- source applications ---
 starship init fish | source
 fzf --fish | source
