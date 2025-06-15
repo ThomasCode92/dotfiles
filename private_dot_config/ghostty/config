@@ -1,4 +1,4 @@
-theme = GitHub-Dark-Default
+theme = catppuccin-mocha
 background-opacity = 1
 
 # disable programming ligatures
