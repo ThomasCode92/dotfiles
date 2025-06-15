@@ -1,14 +1,5 @@
+# Get editor completions based on the config schema
 "$schema" = 'https://starship.rs/config-schema.json'
 
-format = """
-$directory\
-$git_branch\
-$git_status\
-$line_break\
-$shell\
-$character
-"""
-
-[directory]
-truncation_length = 10 
-truncate_to_repo = false
+# Inserts a blank line between shell prompts
+add_newline = true
