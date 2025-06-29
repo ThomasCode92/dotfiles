@@ -65,11 +65,7 @@ chezmoi edit $__fish_config_dir/fish_plugins --apply # add jorgebucaran/autopair
 chezmoi apply
 ```
 
-### Terminal Emulator (Kitty, for now) 🖥️🐈
-
-[Kitty](https://sw.kovidgoyal.net/kitty/) is a fast, feature-rich, and GPU-accelerated terminal emulator. Kitty offers _GPU rendering_ for fast performance, _multi-layout support_ with tabs and splits, and highly customizable _themes and shortcuts_.
-
-#### Ghostty 🖥️👻
+### Terminal - Ghostty 🖥️👻
 
 [Ghostty](https://ghostty.org/) is a fast, feature-rich, and cross-platform terminal emulator that uses platform-native UI and GPU acceleration.
 
