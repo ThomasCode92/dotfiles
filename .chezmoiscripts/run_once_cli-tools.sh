@@ -35,9 +35,6 @@ for pkg in "${packages[@]}"; do
       mkdir -p ~/.local/bin
       ln -s /usr/bin/batcat ~/.local/bin/bat
       mkdir -p "$(bat --config-dir)/themes"
-      wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Latte.tmTheme
-      wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Frappe.tmTheme
-      wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Macchiato.tmTheme
       wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Mocha.tmTheme
       bat cache --build
     fi
@@ -64,6 +61,9 @@ if ! command -v yazi &>/dev/null; then
     cd yazi
     cargo build --release --locked
     mv target/release/yazi target/release/ya /usr/local/bin/
+
+    echo "Setting Catppuccin theme for Yazi..."
+    ya pkg add yazi-rs/flavors:catppuccin-mocha
   else
     echo "Rustup is not installed, skipping Yazi installation."
   fi
