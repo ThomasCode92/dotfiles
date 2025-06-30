@@ -1,8 +1,11 @@
-theme = catppuccin-macchiato
-background-opacity = 1
+# appearance - Catppuccin theme
+theme = catppuccin-mocha
+background = #000000
 
-font-feature = -calt
-
+# window settings
 window-padding-y = 0
 window-padding-balance = true
 fullscreen = true
+
+# disable programming ligatures
+font-feature = -calt
