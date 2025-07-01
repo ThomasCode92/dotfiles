@@ -8,6 +8,9 @@ setxkbmap -option ctrl:swapcaps
 # --- set the key bindings to use vi mode ---
 fish_vi_key_bindings
 
+# --- set a catppuccin theme ---
+fish_config theme save "Catppuccin Mocha"
+
 # --- source applications ---
 starship init fish | source
 fzf --fish | source
