@@ -1,0 +1,13 @@
+#!/bin/bash
+
+{{ if .isWorkComputer }}
+VERSION=$(curl -s https://api.github.com/repos/obsidianmd/obsidian-releases/releases/latest | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+VERSION_NO_V=${VERSION#v}
+
+DEB_FILE="obsidian_${VERSION_NO_V}_amd64.deb"
+URL="https://github.com/obsidianmd/obsidian-releases/releases/download/$VERSION/$DEB_FILE"
+
+curl -L -o "$DEB_FILE" "$URL"
+sudo dpkg -i "$DEB_FILE"
+rm "$DEB_FILE"
+{{ end }}
