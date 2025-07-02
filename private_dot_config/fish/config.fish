@@ -9,7 +9,7 @@ setxkbmap -option ctrl:swapcaps
 fish_vi_key_bindings
 
 # --- set a catppuccin theme ---
-fish_config theme save "Catppuccin Mocha"
+echo y | fish_config theme save "Catppuccin Mocha" >/dev/null 2>&1
 
 # --- source applications ---
 starship init fish | source
