@@ -1,5 +1,5 @@
 yarn 1.22.19
-nodejs 21.4.0
+nodejs 22.12.0
 golang 1.24.3
 lazydocker 0.24.1
 pnpm 10.11.0
