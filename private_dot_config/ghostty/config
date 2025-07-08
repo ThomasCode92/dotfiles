@@ -1,6 +1,5 @@
 # appearance - Catppuccin theme
 theme = catppuccin-mocha
-background = #000000
 
 # window settings
 window-padding-y = 0

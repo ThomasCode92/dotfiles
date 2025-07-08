@@ -1,15 +1,5 @@
 return {
   {
-    -- configure catppuccin colorscheme
-    "catppuccin/nvim",
-    opts = {
-      color_overrides = {
-        -- make 'mocha' colorscheme more dark
-        mocha = { base = "#000000", mantle = "#010101", crust = "#020202" },
-      },
-    },
-  },
-  {
     "christoomey/vim-tmux-navigator",
     cmd = {
       "TmuxNavigateLeft",
