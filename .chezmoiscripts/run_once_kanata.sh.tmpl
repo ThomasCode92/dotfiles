@@ -1,0 +1,11 @@
+#!/bin/bash
+
+{{ if .isWorkComputer }}
+echo "Installing kanata..."
+git clone https://github.com/jtroo/kanata ~/kanata
+cd kanata
+cargo build # --release optional, not really perf sensitive
+
+# add kanata to PATH
+sudo cp target/debug/kanata /usr/local/bin/
+{{ end }}

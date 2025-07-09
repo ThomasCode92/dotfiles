@@ -2,9 +2,6 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 
-# --- switch caps lock and ctrl ---
-setxkbmap -option ctrl:swapcaps
-
 # --- set the key bindings to use vi mode ---
 fish_vi_key_bindings
 
