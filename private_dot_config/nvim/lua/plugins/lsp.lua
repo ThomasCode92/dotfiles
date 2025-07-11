@@ -13,15 +13,21 @@ return {
           typescript = { inlayHints = inlay_hints },
         },
       },
-      tailwindcss = {
-        experimental = {
-          classRegex = {
-            { "[cC]lasses\\s*\\+?=\\s*([^;]*);", "['\"`]([^'\"`]*)['\"`]" },
-          },
-        },
-      },
       cssls = {},
       emmet_language_server = {},
+    },
+    setup = {
+      tailwindcss = function(_, opts)
+        opts.settings = {
+          tailwindCSS = {
+            experimental = {
+              classRegex = {
+                { "[cC]lasses\\s*\\+?=\\s*([^;]*);", "['\"`]([^'\"`]*)['\"`]" },
+              },
+            },
+          },
+        }
+      end,
     },
   },
 }
