@@ -1,7 +1,8 @@
-;; Caps to escape/control configuration for Kanata
-
+;; Caps to escape/control and extra super key configuration
+  
 (defsrc
   caps
+  ralt  ;; AltGr key (right alt)
 )
 
 (defalias
@@ -10,4 +11,5 @@
 
 (deflayer base
   @escctrl
+  lmet     ;; Map AltGr to Super (left meta/Windows key)
 )
