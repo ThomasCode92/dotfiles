@@ -18,7 +18,6 @@ source ~/.asdf/asdf.fish
 export PATH="~/.local/bin:$PATH"
 export EDITOR=nvim
 export VISUAL=nvim
-set -x OPENAI_API_KEY (pass show openai/api_key | head -n 1)
 
 # --- aliases ---
 alias ls="eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions"
