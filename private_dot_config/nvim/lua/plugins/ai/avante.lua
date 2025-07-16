@@ -6,6 +6,7 @@ return {
   {
     "yetone/avante.nvim",
     event = "VeryLazy",
+    build = LazyVim.is_win() and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" or "make",
     opts = {
       -- Default configuration
       hints = { enabled = false },
@@ -20,20 +21,30 @@ return {
         provider = "snacks",
         provider_opts = {},
       },
+      -- MCP integration
+      system_prompt = function()
+        local hub = require("mcphub").get_hub_instance()
+        return hub and hub:get_active_servers_prompt() or ""
+      end,
+      custom_tools = function()
+        return {
+          require("mcphub.extensions.avante").mcp_tool(),
+        }
+      end,
+      disabled_tools = {
+        "list_files", -- Built-in file operations
+        "search_files",
+        "read_file",
+        "create_file",
+        "rename_file",
+        "delete_file",
+        "create_dir",
+        "rename_dir",
+        "delete_dir",
+        "bash", -- Built-in terminal access
+      },
     },
-    build = LazyVim.is_win() and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" or "make",
   },
-  -- {
-  --   "MeanderingProgrammer/render-markdown.nvim",
-  --   lazy = true,
-  --   optional = true,
-  --   ft = function(_, ft)
-  --     vim.list_extend(ft, { "Avante" })
-  --   end,
-  --   opts = function(_, opts)
-  --     opts.file_types = vim.list_extend(opts.file_types or {}, { "Avante" })
-  --   end,
-  -- },
   {
     "folke/which-key.nvim",
     optional = true,
