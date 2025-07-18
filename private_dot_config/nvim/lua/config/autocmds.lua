@@ -32,6 +32,6 @@ vim.api.nvim_create_autocmd("User", {
 
     local new_lines = vim.split(new_text, "\n")
     local last_line = new_lines[#new_lines] or ""
-    vim.api.nvim_win_set_cursor(0, { row + #new_lines, math.max(0, #last_line - 1) })
+    vim.api.nvim_win_set_cursor(0, { row + #new_lines, #last_line })
   end,
 })
