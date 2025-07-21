@@ -14,6 +14,7 @@
 vim.api.nvim_create_autocmd("User", {
   pattern = "BlinkCmpAccept",
   callback = function(args)
+    -- Only handle Copilot suggestions
     if args.data.item.source_name ~= "copilot" then
       return
     end
@@ -21,17 +22,18 @@ vim.api.nvim_create_autocmd("User", {
     local item = args.data.item
     local new_text = item.textEdit and item.textEdit.newText or item.label
 
-    local cursor_pos = args.data.context.cursor
-    local row = cursor_pos[1] - 1 -- convert to 0-based index
-
-    vim.api.nvim_buf_set_lines(0, row, row + 1, false, {})
-
-    if new_text then
-      vim.api.nvim_buf_set_lines(0, row, row, false, vim.split(new_text, "\n"))
+    -- Check if suggestion is single-line
+    if new_text:find("\n") then
+      return
     end
 
-    local new_lines = vim.split(new_text, "\n")
-    local last_line = new_lines[#new_lines] or ""
-    vim.api.nvim_win_set_cursor(0, { row + #new_lines, #last_line })
+    local row = args.data.context.cursor[1] - 1 -- 0-based index
+
+    -- Replace current line
+    vim.api.nvim_buf_set_lines(0, row, row + 1, false, {})
+    vim.api.nvim_buf_set_lines(0, row, row, false, { new_text })
+
+    -- Place cursor at end of new line
+    vim.api.nvim_win_set_cursor(0, { row + 1, #new_text })
   end,
 })
