@@ -1,0 +1,21 @@
+#!/bin/bash
+
+{{ if .isWorkComputer }}
+
+# Check if Posting is installed, if yes, skip installation
+if command -v posting &>/dev/null; then
+  echo "The posting CLI is already installed, skipping installation."
+  exit 0
+fi
+
+# Check if uv is installed, if not, install it
+if ! command -v uv &>/dev/null; then
+  echo "The uv CLI is needed to install Posting! Installing the uv CLI..."
+  curl -LsSf https://astral.sh/uv/install.sh | sh
+fi
+
+# Install Posting (will also quickly install Python 3.12 if needed)
+echo "Installing the posting CLI..."
+uv tool install --python 3.12 posting
+
+{{ end }}
