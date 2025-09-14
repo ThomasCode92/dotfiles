@@ -1,0 +1,14 @@
+#!/bin/bash
+
+{{ if .isWorkComputer }}
+echo "Installing nushell..."
+git clone https://github.com/nushell/nushell.git
+cd nushell
+cargo build --workspace
+
+# add nushell to path
+echo "Adding nushell to path..."
+sudo cp target/debug/nu /usr/local/bin/
+
+cd -
+{{ end }}
