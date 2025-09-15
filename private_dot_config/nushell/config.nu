@@ -20,3 +20,6 @@
 # Starship prompt
 mkdir ($nu.data-dir | path join "vendor/autoload")
 starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
+
+# Catppuccin Theme
+source ($nu.default-config-dir | path join "themes/catppuccin_mocha.nu")
