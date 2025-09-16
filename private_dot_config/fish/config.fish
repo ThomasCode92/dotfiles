@@ -24,6 +24,7 @@ alias ls="eza --color=always --long --git --no-filesize --icons=always --no-time
 alias cd="z"
 alias lg="lazygit"
 alias ld="lazydocker"
+alias swsh="~/scripts/switch_shell.sh"
 
 # --- setup fzf theme ---
 set fg "#CDD6F4" # Text
