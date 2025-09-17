@@ -17,6 +17,15 @@
 # options using:
 #     config nu --doc | nu-highlight | less -R
 
+# Set & configure vi-mode
+$env.config.edit_mode = 'vi'          # set vi mode
+$env.PROMPT_INDICATOR_VI_NORMAL = ""  # reset normal mode indicator
+$env.PROMPT_INDICATOR_VI_INSERT = ""  # reset insert mode indicator
+$env.config.cursor_shape = {
+  vi_normal: underscore
+  vi_insert: block
+}
+
 # Aliases
 alias swsh = ~/scripts/switch_shell.sh
 
