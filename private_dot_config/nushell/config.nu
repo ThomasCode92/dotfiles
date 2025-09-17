@@ -26,6 +26,10 @@ $env.config.cursor_shape = {
   vi_insert: block
 }
 
+# Fish completer
+source fish_completer.nu
+$env.config.completions.external = {enable: true, completer: $fish_completer}
+
 # Aliases
 alias swsh = ~/scripts/switch_shell.sh
 
