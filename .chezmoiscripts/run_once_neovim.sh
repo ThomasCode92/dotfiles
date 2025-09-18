@@ -1,24 +1,25 @@
 #!/bin/bash
 
 # Check if Neovim is already installed
-if command -v nvim &> /dev/null; then
-    echo "Neovim is already installed. Skipping installation."
-    exit 0
+if command -v nvim &>/dev/null; then
+  echo "Neovim is already installed. Skipping installation."
+  exit 0
 fi
 
 # Install dependencies
 echo "Installing dependencies..."
 sudo apt-get update
 sudo apt-get install -y ninja-build gettext cmake curl build-essential
+cargo install --locked tree-sitter-cli # Needed for treesitter support
 
 # Clone Neovim repository
 echo "Cloning Neovim repository..."
 NVIM_DIR="$HOME/neovim"
 if [ ! -d "$NVIM_DIR" ]; then
-    git clone https://github.com/neovim/neovim.git "$NVIM_DIR"
+  git clone https://github.com/neovim/neovim.git "$NVIM_DIR"
 else
-    echo "Neovim repository already exists. Pulling latest changes..."
-    cd "$NVIM_DIR" && git pull
+  echo "Neovim repository already exists. Pulling latest changes..."
+  cd "$NVIM_DIR" && git pull
 fi
 
 # Build and install Neovim
