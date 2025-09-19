@@ -10,7 +10,6 @@ fi
 echo "Installing dependencies..."
 sudo apt-get update
 sudo apt-get install -y ninja-build gettext cmake curl build-essential
-cargo install --locked tree-sitter-cli # Needed for treesitter support
 
 # Clone Neovim repository
 echo "Cloning Neovim repository..."
