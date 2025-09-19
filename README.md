@@ -83,6 +83,18 @@ chezmoi apply
 [Ghostty](https://ghostty.org/) is a fast, feature-rich, and cross-platform
 terminal emulator that uses platform-native UI and GPU acceleration.
 
+## GNOME Extensions 🐧🧩
+
+The GNOME Shell extension settings can be managed with `dconf`:
+
+```bash
+# Load extensions from config
+dconf load /org/gnome/shell/extensions/ < gnome_extensions.txt
+
+# Save current extensions to config
+dconf dump /org/gnome/shell/extensions/ > gnome_extensions.txt # save current config
+```
+
 ## Keyboard Remapping ⌨️🔄
 
 This setup uses a custom keyboard remapping configuration to enhance
