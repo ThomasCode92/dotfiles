@@ -40,4 +40,5 @@ starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.n
 # Catppuccin Theme
 source ($nu.default-config-dir | path join "themes/catppuccin_mocha.nu")
 
-source ~/.zoxide.nu # source zoxide
+source ~/.zoxide.nu     # source zoxide
+use yazi_wrapper.nu y   # use yazi wrapper
