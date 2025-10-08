@@ -6,5 +6,8 @@ window-padding-y = 0
 window-padding-balance = true
 fullscreen = true
 
+# mouse settings
+mouse-hide-while-typing = true
+
 # disable programming ligatures
 font-feature = -calt
