@@ -6,14 +6,11 @@ return {
     "mfussenegger/nvim-dap",
     opts = function()
       local dap = require("dap")
+      local debugUtils = require("utils.debug")
 
       local projectFolder = ""
       local file = vim.fn.expand("%:p")
       local cwd = vim.fn.getcwd():gsub([[-]], "%%-")
-
-      -- Path setup for JavaScript debug adapter installed via Mason
-      local dataPath = vim.fn.stdpath("data") -- Neovim's standard data directory (e.g., ~/.local/share/nvim on Linux)
-      local debugServerPath = dataPath .. "/mason/packages/js-debug-adapter/js-debug/src/dapDebugServer.js"
 
       if string.find(file, cwd .. "/apps/") then
         projectFolder = string.match(file, cwd .. "(.-/[^/]+)/src")
@@ -27,10 +24,7 @@ return {
             type = "server",
             host = "localhost",
             port = "${port}",
-            executable = {
-              command = "node",
-              args = { debugServerPath, "${port}" },
-            },
+            executable = { command = "node", args = { debugUtils.debugServerPath, "${port}" } },
           }
         end
 
@@ -75,9 +69,10 @@ return {
           {
             type = "pwa-chrome",
             request = "launch",
-            name = "Launch Chrome",
-            url = "http://localhost:3000",
+            name = "Launch Chrome (nvim-dap)",
+            url = debugUtils.enterLaunchURL,
             webRoot = vim.fn.getcwd() .. projectFolder,
+            sourceMaps = true,
           },
         }
       end
