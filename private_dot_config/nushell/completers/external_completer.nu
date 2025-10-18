@@ -1,3 +1,7 @@
+# external_completer.nu
+# External shell completion integration for Nushell
+# For more information, see: https://www.nushell.sh/cookbook/external_completers.html#putting-it-all-together
+
 source carapace_completer.nu
 source fish_completer.nu
 

@@ -27,7 +27,7 @@ $env.config.cursor_shape = {
 }
 
 # External completions
-source external_completer.nu
+source completers/external_completer.nu
 $env.config.completions.external = {enable: true, completer: $external_completer}
 
 # Aliases
