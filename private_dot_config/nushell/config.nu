@@ -30,6 +30,8 @@ $env.config.cursor_shape = {
 source completers/external_completer.nu
 $env.config.completions.external = {enable: true, completer: $external_completer}
 
+$env.EZA_CONFIG_DIR = $"($env.HOME)/.config/eza" # set eza config dir
+
 # Aliases
 alias swsh = ~/scripts/switch_shell.sh
 
