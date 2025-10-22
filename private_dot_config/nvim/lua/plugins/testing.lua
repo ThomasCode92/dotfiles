@@ -19,6 +19,7 @@ return {
   "nvim-neotest/neotest",
   dependencies = {
     "marilari88/neotest-vitest",
+    "benelan/neotest-stenciljs",
   },
   opts = {
     adapters = {
@@ -28,6 +29,9 @@ return {
           return name ~= "node_modules"
         end,
       },
+      -- see this github issue to fix a bug with the arguments passed to jest:
+      -- https://github.com/benelan/neotest-stenciljs/issues/1
+      ["neotest-stenciljs"] = {},
     },
   },
 }
