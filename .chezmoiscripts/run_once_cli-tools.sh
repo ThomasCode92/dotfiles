@@ -6,6 +6,7 @@ is_package_installed() {
   return $?
 }
 
+
 ## List of packages to install
 packages=("fzf" "fd-find" "bat" "fastfetch" "ripgrep" "eza" "jq" "ffmpeg")
 
@@ -51,6 +52,14 @@ if ! command -v zoxide &>/dev/null; then
   curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
 else
   echo "Installation for zoxide is skipped, was already installed."
+fi
+
+## Install Atuin
+if ! command -v atuin &>/dev/null; then
+  echo "Installing Atuin..."
+  cargo install atuin
+else
+  echo "Installation for Atuin is skipped, was already installed."
 fi
 
 ## Install Yazi
