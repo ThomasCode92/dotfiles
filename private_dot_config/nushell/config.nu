@@ -39,9 +39,8 @@ alias swsh = ~/scripts/switch_shell.sh
 mkdir ($nu.data-dir | path join "vendor/autoload")
 starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
 
-# Catppuccin Theme
+# Source additional configuration files 
 source ($nu.default-config-dir | path join "themes/catppuccin_mocha.nu")
-
+source ($nu.default-config-dir | path join "atuin.nu")  # source atuin
 source ~/.zoxide.nu                   # source zoxide
-source ~/.local/share/atuin/init.nu   # source atuin
 use yazi_wrapper.nu y                 # use yazi wrapper
