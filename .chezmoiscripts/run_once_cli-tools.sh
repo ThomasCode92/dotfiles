@@ -1,21 +1,31 @@
 #!/bin/bash
 
-## Function to check if a package is installed
+# Function to check if a package is installed
 is_package_installed() {
   dpkg -l | grep "$1" &>/dev/null
   return $?
 }
 
+# Check if rustup is installed (required for cargo-based tools)
+if ! command -v rustup &>/dev/null; then
+  echo "🦀 rustup is not installed. Installing rustup..."
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+  rustup update
+  source ~/.cargo/env
+  echo "✅ rustup installed successfully."
+else
+  echo "⏭️ Installation for rustup is skipped, was already installed."
+fi
 
-## List of packages to install
+# List of packages to install
 packages=("fzf" "fd-find" "bat" "fastfetch" "ripgrep" "eza" "jq" "ffmpeg")
 
-## Install packages
+# Install packages
 for pkg in "${packages[@]}"; do
   if ! is_package_installed "$pkg"; then
-    echo "Installing $pkg..."
+    echo "📦 Installing $pkg..."
 
-    ### Special handling for eza
+    # Special handling for eza
     if [[ "$pkg" == "eza" ]]; then
       sudo mkdir -p /etc/apt/keyrings
       wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc | sudo gpg --dearmor -o /etc/apt/keyrings/gierens.gpg
@@ -24,15 +34,15 @@ for pkg in "${packages[@]}"; do
       sudo apt update
     fi
 
-    ### Install the package
+    # Install the package
     sudo apt install -y $pkg
 
-    ### Post installation setup
+    # Post installation setup
     if [[ "$pkg" == "fd-find" ]]; then
-      echo "Setting up fd..."
+      echo "🔧 Setting up fd..."
       ln -s $(which fdfind) ~/.local/bin/fd
     elif [[ "$pkg" == "bat" ]]; then
-      echo "Setting up bat..."
+      echo "🦇 Setting up bat..."
       mkdir -p ~/.local/bin
       ln -s /usr/bin/batcat ~/.local/bin/bat
       mkdir -p "$(bat --config-dir)/themes"
@@ -40,42 +50,38 @@ for pkg in "${packages[@]}"; do
       bat cache --build
     fi
 
-    echo "$pkg installed successfully."
+    echo "✅ $pkg installed successfully."
   else
-    echo "Installation for $pkg is skipped, was already installed."
+    echo "⏭️ Installation for $pkg is skipped, was already installed."
   fi
 done
 
-## Install zoxide
+# Install zoxide
 if ! command -v zoxide &>/dev/null; then
-  echo "Installing zoxide..."
+  echo "🧭 Installing zoxide..."
   curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
 else
-  echo "Installation for zoxide is skipped, was already installed."
+  echo "⏭️ Installation for zoxide is skipped, was already installed."
 fi
 
-## Install Atuin
+# Install Atuin
 if ! command -v atuin &>/dev/null; then
-  echo "Installing Atuin..."
+  echo "🐢 Installing Atuin..."
   cargo install atuin
 else
-  echo "Installation for Atuin is skipped, was already installed."
+  echo "⏭️ Installation for Atuin is skipped, was already installed."
 fi
 
-## Install Yazi
+# Install Yazi
 if ! command -v yazi &>/dev/null; then
-  if command -v rustup &>/dev/null; then
-    echo "Installing Yazi..."
-    git clone http://github.com/sxyazi/yazi.git
-    cd yazi
-    cargo build --release --locked
-    mv target/release/yazi target/release/ya /usr/local/bin/
+  echo "📁 Installing Yazi..."
+  git clone http://github.com/sxyazi/yazi.git
+  cd yazi
+  cargo build --release --locked
+  mv target/release/yazi target/release/ya /usr/local/bin/
 
-    echo "Setting Catppuccin theme for Yazi..."
-    ya pkg add yazi-rs/flavors:catppuccin-mocha
-  else
-    echo "Rustup is not installed, skipping Yazi installation."
-  fi
+  echo "🎨 Setting Catppuccin theme for Yazi..."
+  ya pkg add yazi-rs/flavors:catppuccin-mocha
 else
-  echo "Installation for Yazi is skipped, was already installed."
+  echo "⏭️ Installation for Yazi is skipped, was already installed."
 fi
