@@ -1,6 +1,5 @@
 if status is-interactive
     # Commands to run in interactive sessions can go here
-    atuin init fish | source
 end
 
 # --- set the key bindings to use vi mode ---
@@ -47,6 +46,10 @@ set -gx $EDITOR nvim # or "vim", or "code", etc.
 set fzf_directory_opts --bind "ctrl-o:execute($EDITOR {} &> /dev/tty)"
 set fzf_fd_opts --hidden --max-depth 5
 set fzf_preview_dir_cmd eza --all --color=always --icons=always
+
+# --- search shell history with atuin ---
+fzf_configure_bindings --history=
+atuin init fish --disable-up-arrow | source
 
 # --- shell wrapper for Yazi ---
 function y

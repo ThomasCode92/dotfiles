@@ -4,7 +4,7 @@
 
 if not ($"($env.HOME)/.local/share/atuin/init.nu" | path exists) {
     mkdir ~/.local/share/atuin/
-    atuin init nu | save ~/.local/share/atuin/init.nu
+    atuin init nu --disable-up-arrow | save ~/.local/share/atuin/init.nu
 }
 
 source ~/.local/share/atuin/init.nu
