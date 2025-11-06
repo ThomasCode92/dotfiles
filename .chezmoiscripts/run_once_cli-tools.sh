@@ -72,6 +72,14 @@ else
   echo "⏭️ Installation for Atuin is skipped, was already installed."
 fi
 
+# Install websocat
+if ! command -v websocat &>/dev/null; then
+  echo "🔌 Installing websocat..."
+  cargo install websocat
+else
+  echo "⏭️ Installation for websocat is skipped, was already installed."
+fi
+
 # Install Yazi
 if ! command -v yazi &>/dev/null; then
   echo "📁 Installing Yazi..."
