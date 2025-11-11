@@ -60,6 +60,7 @@ done
 if ! command -v zoxide &>/dev/null; then
   echo "🧭 Installing zoxide..."
   curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
+  echo "✅ zoxide installed successfully."
 else
   echo "⏭️ Installation for zoxide is skipped, was already installed."
 fi
@@ -68,6 +69,7 @@ fi
 if ! command -v atuin &>/dev/null; then
   echo "🐢 Installing Atuin..."
   cargo install atuin
+  echo "✅ Atuin installed successfully."
 else
   echo "⏭️ Installation for Atuin is skipped, was already installed."
 fi
@@ -76,6 +78,7 @@ fi
 if ! command -v websocat &>/dev/null; then
   echo "🔌 Installing websocat..."
   cargo install websocat
+  echo "✅ websocat installed successfully."
 else
   echo "⏭️ Installation for websocat is skipped, was already installed."
 fi
@@ -92,6 +95,7 @@ if ! command -v gh &>/dev/null; then
     echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list >/dev/null &&
     sudo apt update &&
     sudo apt install gh -y
+  echo "✅ GitHub CLI installed successfully."
 else
   echo "⏭️ Installation for GitHub CLI is skipped, was already installed."
 fi
@@ -106,6 +110,7 @@ if ! command -v yazi &>/dev/null; then
 
   echo "🎨 Setting Catppuccin theme for Yazi..."
   ya pkg add yazi-rs/flavors:catppuccin-mocha
+  echo "✅ Yazi installed successfully."
 else
   echo "⏭️ Installation for Yazi is skipped, was already installed."
 fi
