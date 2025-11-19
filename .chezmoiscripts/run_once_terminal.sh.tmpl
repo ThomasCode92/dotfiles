@@ -1,18 +1,43 @@
-#!/usr/bin/env fish
+#!/bin/bash
 
 {{ if .isWorkComputer }}
-echo "Installing terminal emulators..."
+echo "📟 Installing terminal emulators..."
 {{ else }}
-echo "Installing terminal emulators skipped!"
-return
+echo "⏭️ Installation for terminal emulators skipped (not work computer)."
+exit 0
 {{ end }}
 
 ## Install starship
-echo "Installing starship..."
-curl -sS https://starship.rs/install.sh | sh
-echo "Starship version: $(starship --version)"
+if ! command -v starship &>/dev/null; then
+  echo "🚀 Installing starship..."
+  curl -sS https://starship.rs/install.sh | sh
+  echo "✅ Starship installed successfully: $(starship --version)"
+else
+  echo "⏭️ Installation for starship is skipped, was already installed."
+fi
 
 ## Install ghostty
-echo "Installing ghostty..."
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/mkasberg/ghostty-ubuntu/HEAD/install.sh)"
-echo "Ghostty installed, version: $(ghostty --version)"
+if ! command -v ghostty &>/dev/null; then
+  echo "👻 Installing ghostty..."
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/mkasberg/ghostty-ubuntu/HEAD/install.sh)"
+  echo "✅ Ghostty installed successfully: $(ghostty --version)"
+else
+  echo "⏭️ Installation for ghostty is skipped, was already installed."
+fi
+
+## Install kitty
+if ! command -v kitty &>/dev/null; then
+  echo "🐱 Installing kitty..."
+  curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin launch=n
+  
+  echo "🔧 Setting up desktop integration..."
+  ln -sf ~/.local/kitty.app/bin/kitty ~/.local/kitty.app/bin/kitten ~/.local/bin/
+  cp ~/.local/kitty.app/share/applications/kitty.desktop ~/.local/share/applications/
+  cp ~/.local/kitty.app/share/applications/kitty-open.desktop ~/.local/share/applications/
+  sed -i "s|Icon=kitty|Icon=$(readlink -f ~)/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png|g" ~/.local/share/applications/kitty*.desktop
+  sed -i "s|Exec=kitty|Exec=$(readlink -f ~)/.local/kitty.app/bin/kitty|g" ~/.local/share/applications/kitty*.desktop
+  
+  echo "✅ Kitty installed successfully: $(kitty --version)"
+else
+  echo "⏭️ Installation for kitty is skipped, was already installed."
+fi
