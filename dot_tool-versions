@@ -1,7 +1,7 @@
 yarn 1.22.19
 nodejs 22.12.0
 golang 1.24.3
-lazydocker 0.24.1
+lazydocker 0.24.2
 pnpm 10.11.0
 bun 1.2.10
 gradle 8.12.1
