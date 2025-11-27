@@ -44,3 +44,6 @@ source ($nu.default-config-dir | path join "themes/catppuccin_mocha.nu")
 source ($nu.default-config-dir | path join "atuin.nu")  # source atuin
 source ~/.zoxide.nu                   # source zoxide
 use yazi_wrapper.nu y                 # use yazi wrapper
+
+# Source additional helper functions
+source ($nu.default-config-dir | path join "helpers/load-dotenv.nu")
