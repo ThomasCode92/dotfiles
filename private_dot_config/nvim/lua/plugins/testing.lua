@@ -19,6 +19,7 @@ return {
   "nvim-neotest/neotest",
   dependencies = {
     "marilari88/neotest-vitest",
+    "nvim-neotest/neotest-jest",
   },
   opts = {
     adapters = {
@@ -26,6 +27,26 @@ return {
         cwd = get_root_dir,
         filter_dir = function(name, rel_path, root)
           return name ~= "node_modules"
+        end,
+      },
+      ["neotest-jest"] = {
+        cwd = get_root_dir,
+        jestCommand = "npx jest --silent --runInBand",
+        jestConfigFile = "jest.config.ts",
+        -- Custom test file matcher for projects with tests/ directory
+        isTestFile = function(file_path)
+          -- Match standard patterns
+          if file_path:match("%.test%.[jt]sx?$") or file_path:match("%.spec%.[jt]sx?$") then
+            return true
+          end
+
+          -- Match files in tests/ directory
+          if file_path:match("/tests/.*%.[jt]sx?$") then
+            return true
+          end
+
+          -- If none of the patterns match, return false
+          return false
         end,
       },
     },
