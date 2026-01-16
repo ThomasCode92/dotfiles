@@ -25,6 +25,8 @@ let external_completer = {|spans|
         git => $fish_completer
         # carapace doesn't have completions for asdf
         asdf => $fish_completer
+        # carapace doesn't have completions for psql
+        psql => $fish_completer
         _ => $carapace_completer
     } | do $in $spans
 }
