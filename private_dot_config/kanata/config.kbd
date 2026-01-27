@@ -1,15 +1,29 @@
-;; Caps to escape/control and extra super key configuration
-  
+(defcfg
+	process-unmapped-keys yes
+)
+
 (defsrc
-  caps
-  ralt  ;; AltGr key (right alt)
+  caps a s d f j k l ;
+)
+
+(defvar
+  tap-time 200
+  hold-time 200
 )
 
 (defalias
-  escctrl (tap-hold 100 100 esc lctl)
+  escctrl (tap-hold $tap-time $hold-time esc lctl)
+  a-mod (tap-hold $tap-time $hold-time a lmet)
+  s-mod (tap-hold $tap-time $hold-time s lalt)
+  d-mod (tap-hold $tap-time $hold-time d lsft)
+  f-mod (tap-hold $tap-time $hold-time f lctl)
+  j-mod (tap-hold $tap-time $hold-time j rctl)
+  k-mod (tap-hold $tap-time $hold-time k rsft)
+  l-mod (tap-hold $tap-time $hold-time l ralt)
+  semicolon-mod (tap-hold $tap-time $hold-time ; rmet)
 )
 
 (deflayer base
-  @escctrl
-  lmet     ;; Map AltGr to Super (left meta/Windows key)
+  ;; Home Row Modifiers
+  @escctrl @a-mod @s-mod @d-mod @f-mod @j-mod @k-mod @l-mod @semicolon-mod
 )
