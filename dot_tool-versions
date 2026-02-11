@@ -1,8 +1,10 @@
 yarn 1.22.19
-nodejs 22.12.0
+nodejs 22.13.0
 golang 1.24.3
 lazydocker 0.24.2
 pnpm 10.11.0
 bun 1.2.10
 gradle 8.12.1
 java openjdk-21
+sqlite 3.51.2
+just 1.46.0
