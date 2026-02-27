@@ -12,6 +12,7 @@ $git_status\
 [](fg:yellow bg:green)\
 $golang\
 $nodejs\
+$java\
 $python\
 [](fg:green bg:sapphire)\
 $docker_context\
@@ -69,6 +70,11 @@ format = '[[($all_status$ahead_behind )](fg:crust bg:yellow)]($style)'
 symbol = ""
 style = "bg:green"
 format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
+
+[java]
+symbol = " "
+style = "bg:green"
+format = '[[ $symbol($version) ](fg:crust bg:green)]($style)'
 
 [golang]
 symbol = ""
