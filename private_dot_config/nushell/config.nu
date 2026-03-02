@@ -47,3 +47,8 @@ use yazi_wrapper.nu y                 # use yazi wrapper
 
 # Source additional helper functions
 source ($nu.default-config-dir | path join "helpers/load-dotenv.nu")
+
+# Auto-load .env.local if present in current directory
+if (".env.local" | path exists) {
+  load-dotenv
+}
