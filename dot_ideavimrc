@@ -1,0 +1,57 @@
+" ========================================
+" IdeaVim Configuration with lazy-idea
+" ========================================
+" Managed by chezmoi - edit source at ~/.local/share/chezmoi/dot_ideavimrc
+"
+" lazy-idea: LazyVim key mappings for JetBrains IDEs
+" https://github.com/cufarvid/lazy-idea
+
+" ========================================
+" Basic Settings
+" ========================================
+
+" Show a few lines of context around the cursor
+set scrolloff=5
+
+" Do incremental searching
+set incsearch
+
+" Don't use Ex mode, use Q for formatting
+map Q gq
+
+" ========================================
+" IdeaVim Plugins
+" ========================================
+" https://jb.gg/ideavim-plugins
+
+" Highlight copied text
+Plug 'machakann/vim-highlightedyank'
+
+" Commentary plugin
+Plug 'tpope/vim-commentary'
+
+" Surround plugin (required by lazy-idea)
+Plug 'tpope/vim-surround'
+
+" EasyMotion (required by lazy-idea)
+" Note: Install EasyMotion plugin from JetBrains Marketplace
+set easymotion
+
+" Which-Key (required by lazy-idea)
+" Note: Install Which-Key plugin from JetBrains Marketplace
+set which-key
+set notimeout
+
+" ========================================
+" lazy-idea Integration
+" ========================================
+" Source lazy-idea configuration if it exists
+" Install with: git clone https://github.com/cufarvid/lazy-idea.git ~/.lazy-idea
+
+source ~/.lazy-idea/lazy-idea.vim
+
+" ========================================
+" Custom Overrides
+" ========================================
+" Add any custom settings or overrides below this line
+" These will take precedence over lazy-idea defaults
