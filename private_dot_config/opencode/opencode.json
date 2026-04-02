@@ -1,4 +1,28 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "model": "github-copilot/claude-sonnet-4.5"
+  "model": "github-copilot/claude-sonnet-4.6",
+  "mcp": {
+    "context7": {
+      "type": "remote",
+      "enabled": true,
+      "url": "https://mcp.context7.com/mcp",
+      "headers": {
+        "CONTEXT7_API_KEY": "{env:CONTEXT7_API_KEY}"
+      }
+    },
+    "Postman": {
+      "type": "remote",
+      "enabled": false,
+      "url": "https://mcp.eu.postman.com/minimal",
+      "oauth": false,
+      "headers": {
+        "Authorization": "Bearer {env:POSTMAN_API_KEY}"
+      }
+    },
+    "excalidraw": {
+      "type": "remote",
+      "enabled": false,
+      "url": "https://mcp.excalidraw.com"
+    }
+  }
 }
