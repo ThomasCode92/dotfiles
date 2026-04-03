@@ -51,6 +51,9 @@ set fzf_preview_dir_cmd eza --all --color=always --icons=always
 fzf_configure_bindings --history=
 atuin init fish --disable-up-arrow | source
 
+# --- set java home, via asdf ---
+. ~/.asdf/plugins/java/set-java-home.fish
+
 # --- shell wrapper for Yazi ---
 function y
     set tmp (mktemp -t "yazi-cwd.XXXXXX")
