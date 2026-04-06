@@ -21,5 +21,5 @@ return {
   },
   { "m4xshen/hardtime.nvim", event = "BufReadPre", opts = {} }, -- break bad habits, enforce vim motions
   { "xvzc/chezmoi.nvim", init = function() end }, -- don't run chezmoi edit on file enter, see docs: https://www.lazyvim.org/extras/util/chezmoi#chezmoinvim
-  { "LazyVim/LazyVim", opts = { colorscheme = "catppuccin" } },
+  { "LazyVim/LazyVim", opts = { colorscheme = "catppuccin-mocha" } },
 }
