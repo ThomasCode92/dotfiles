@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 ## Install asdf
 if [ ! -d ~/.asdf ]; then
