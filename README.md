@@ -17,17 +17,10 @@ the steps below to get started.
 
 ### Prerequisites 🛠️📦
 
+> **Fish and Fisher are installed automatically** by chezmoi scripts — no
+> manual steps needed for those.
+
 ```bash
-## install fish
-sudo apt-add-repository ppa:fish-shell/release-3
-sudo apt update
-sudo apt install fish
-
-chsh -s $(which fish) # set default shell
-
-## install fisher, a plugin manager
-curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
-
 ## install rustup, needed for Yazi
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 rustup update
