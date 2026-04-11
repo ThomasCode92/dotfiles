@@ -22,8 +22,7 @@
     "lazyvim.plugins.extras.lang.yaml",
     "lazyvim.plugins.extras.test.core",
     "lazyvim.plugins.extras.util.chezmoi",
-    "lazyvim.plugins.extras.util.rest",
-    "lazyvim.plugins.extras.vscode"
+    "lazyvim.plugins.extras.util.rest"
   ],
   "install_version": 8,
   "news": {
