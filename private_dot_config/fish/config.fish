@@ -6,7 +6,7 @@ end
 fish_vi_key_bindings
 
 # --- set a catppuccin theme ---
-echo y | fish_config theme save "Catppuccin Mocha" >/dev/null 2>&1
+echo y | fish_config theme save catppuccin-mocha >/dev/null 2>&1
 
 # --- source applications ---
 starship init fish | source
