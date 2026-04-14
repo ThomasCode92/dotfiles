@@ -115,9 +115,10 @@ else
   echo "⏭️ Installation for Yazi is skipped, was already installed."
 fi
 
-if command -v opencode &>/dev/null; then
-  echo "Opencode CLI is already installed, skipping installation."
-else
-  echo "Installing the Opencode CLI..."
+if ! command -v opencode &>/dev/null; then
+  echo "🤖 Installing the Opencode CLI..."
   curl -fsSL https://opencode.ai/install | bash
+  echo "✅ Opencode CLI installed successfully."
+else
+  echo "⏭️ Installation for Opencode CLI is skipped, was already installed."
 fi
