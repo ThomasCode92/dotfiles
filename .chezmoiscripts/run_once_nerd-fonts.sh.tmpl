@@ -1,8 +1,6 @@
 #!/bin/bash
 
 {{ if ne .chezmoi.os "linux" }}
-echo "⚠️ This script is intended for Linux systems. Skipping installation."
-echo "   Nerd Fonts will be installed via Homebrew on macOS."
 exit 0
 {{ end }}
 
@@ -67,4 +65,3 @@ fc-cache -f "$FONT_DIR" &>/dev/null
 echo "✅ Nerd Fonts setup complete!"
 echo "🔤 Installed font families:"
 fc-list | grep -iE "(Hack|JetBrains).*Nerd Font" | cut -d: -f2 | cut -d, -f1 | sort -u | head -10
-{{ end }}
