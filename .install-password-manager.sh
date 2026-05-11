@@ -8,6 +8,9 @@ case "$(uname -s)" in
 Linux)
   sudo apt install pass
   ;;
+Darwin)
+  brew install pass
+  ;;
 *)
   echo "unsupported OS"
   exit 1
