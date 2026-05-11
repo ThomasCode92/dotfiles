@@ -1,0 +1,38 @@
+# Homebrew Bundle file for macOS and Linux (with Homebrew installed)
+# Managed by chezmoi - run `brew bundle --file=~/.config/homebrew/Brewfile` to install
+
+brew "asdf"
+brew "atuin"
+brew "bat"
+brew "carapace"
+brew "eza"
+brew "fastfetch"
+brew "fd"
+brew "ffmpeg"
+brew "fish"
+brew "fzf"
+brew "gh"
+brew "jq"
+brew "kanata"
+brew "lazydocker"
+brew "lazygit"
+brew "neovim"
+brew "nushell"
+brew "ripgrep"
+brew "starship"
+brew "tmux"
+brew "websocat"
+brew "yazi"
+brew "zoxide"
+
+# Nerd Fonts (Hack and JetBrains Mono)
+# macOS only, for Linux, see run_once_nerd-fonts.sh
+cask "font-hack-nerd-font" if OS.mac?
+cask "font-jetbrains-mono-nerd-font" if OS.mac?
+
+{{ if .isWorkComputer }}
+# Work computer only tools
+cask "ghostty" if OS.mac? # For Linux, see run_once_terminal.sh
+cask "kitty" if OS.mac? # For Linux, see run_once_terminal.sh
+cask "obsidian" if OS.mac? # For Linux, see run_once_install_obsidian.sh
+{{ end }}

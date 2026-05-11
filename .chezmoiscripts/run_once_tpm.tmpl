@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [[ ! -e ~/.tmux/plugins/ ]]; then
+  echo "📦 Installing tpm..."
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+  echo "✅ tpm installed successfully"
+else
+  echo "⏭️  tpm already installed, installation skipped"
+fi

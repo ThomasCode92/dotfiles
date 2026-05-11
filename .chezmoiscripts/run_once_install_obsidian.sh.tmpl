@@ -1,6 +1,12 @@
 #!/bin/bash
 
 {{ if .isWorkComputer }}
+{{ if ne .chezmoi.os "linux" }}
+echo "⚠️ This script is intended for Linux systems. Skipping installation."
+echo "   Obsidian will be installed via Homebrew on macOS."
+exit 0
+{{ end }}
+
 VERSION=$(curl -s https://api.github.com/repos/obsidianmd/obsidian-releases/releases/latest | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
 VERSION_NO_V=${VERSION#v}
 

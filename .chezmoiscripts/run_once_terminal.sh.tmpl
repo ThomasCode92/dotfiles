@@ -1,20 +1,10 @@
 #!/bin/bash
 
-{{ if .isWorkComputer }}
+{{ if .isWorkComputer && ne .chezmoi.os "darwin" }}
 echo "📟 Installing terminal emulators..."
 {{ else }}
-echo "⏭️ Installation for terminal emulators skipped (not work computer)."
 exit 0
 {{ end }}
-
-## Install starship
-if ! command -v starship &>/dev/null; then
-  echo "🚀 Installing starship..."
-  curl -sS https://starship.rs/install.sh | sh
-  echo "✅ Starship installed successfully: $(starship --version)"
-else
-  echo "⏭️ Installation for starship is skipped, was already installed."
-fi
 
 ## Install ghostty
 if ! command -v ghostty &>/dev/null; then
@@ -29,14 +19,14 @@ fi
 if ! command -v kitty &>/dev/null; then
   echo "🐱 Installing kitty..."
   curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin launch=n
-  
+
   echo "🔧 Setting up desktop integration..."
   ln -sf ~/.local/kitty.app/bin/kitty ~/.local/kitty.app/bin/kitten ~/.local/bin/
   cp ~/.local/kitty.app/share/applications/kitty.desktop ~/.local/share/applications/
   cp ~/.local/kitty.app/share/applications/kitty-open.desktop ~/.local/share/applications/
   sed -i "s|Icon=kitty|Icon=$(readlink -f ~)/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png|g" ~/.local/share/applications/kitty*.desktop
   sed -i "s|Exec=kitty|Exec=$(readlink -f ~)/.local/kitty.app/bin/kitty|g" ~/.local/share/applications/kitty*.desktop
-  
+
   echo "✅ Kitty installed successfully: $(kitty --version)"
 else
   echo "⏭️ Installation for kitty is skipped, was already installed."

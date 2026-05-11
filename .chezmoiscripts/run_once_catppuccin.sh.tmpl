@@ -1,0 +1,17 @@
+#!/bin/bash
+
+echo "🦇 Setting up bat..."
+mkdir -p ~/.local/bin
+ln -s /usr/bin/batcat ~/.local/bin/bat
+mkdir -p "$(bat --config-dir)/themes"
+wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Mocha.tmTheme
+bat cache --build
+
+echo "🐶  Setting up k9s"
+{{ if eq .chezmoi.os "linux" }}
+OUT="${XDG_CONFIG_HOME:-$HOME/.config}/k9s/skins"
+{{ else if eq .chezmoi.os "darwin" }}
+OUT="${XDG_CONFIG_HOME:-$HOME/Library/Application Support}/k9s/skins"
+{{ end }}
+mkdir -p "$OUT"
+curl -L https://github.com/catppuccin/k9s/archive/main.tar.gz | tar xz -C "$OUT" --strip-components=2 k9s-main/dist

@@ -9,28 +9,28 @@ echo "🧭 Setting up lazy-idea for IntelliJ IDEA..."
 
 # Clone or update lazy-idea repository
 if [ ! -d "$LAZY_IDEA_DIR" ]; then
-    echo "📦 Cloning lazy-idea repository..."
-    if git clone https://github.com/cufarvid/lazy-idea.git "$LAZY_IDEA_DIR" &>/dev/null; then
-        echo "✅ lazy-idea cloned successfully to ~/.lazy-idea"
-    else
-        echo "❌ Failed to clone lazy-idea repository"
-        exit 1
-    fi
+  echo "📦 Cloning lazy-idea repository..."
+  if git clone https://github.com/cufarvid/lazy-idea.git "$LAZY_IDEA_DIR" &>/dev/null; then
+    echo "✅ lazy-idea cloned successfully to ~/.lazy-idea"
+  else
+    echo "❌ Failed to clone lazy-idea repository"
+    exit 1
+  fi
 else
-    echo "📁 lazy-idea already exists, updating..."
-    cd "$LAZY_IDEA_DIR" || exit 1
-    if git pull &>/dev/null; then
-        echo "✅ lazy-idea updated successfully"
-    else
-        echo "⏭️  lazy-idea update skipped (no changes or offline)"
-    fi
+  echo "📁 lazy-idea already exists, updating..."
+  cd "$LAZY_IDEA_DIR" || exit 1
+  if git pull &>/dev/null; then
+    echo "✅ lazy-idea updated successfully"
+  else
+    echo "⏭️ lazy-idea update skipped (no changes or offline)"
+  fi
 fi
 
 # Check if .ideavimrc exists and is managed by chezmoi
 if [ -f "$HOME/.ideavimrc" ]; then
-    echo "✅ .ideavimrc found"
+  echo "✅ .ideavimrc found"
 else
-    echo "⚠️  .ideavimrc not found - run 'chezmoi apply' to create it"
+  echo "⚠️  .ideavimrc not found - run 'chezmoi apply' to create it"
 fi
 
 echo ""
