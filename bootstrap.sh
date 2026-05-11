@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 echo "🚀 Setting up dotfiles"
 
 if which -s "brew"; then
@@ -8,6 +10,13 @@ else
   echo "🍺 Installing Homebrew"
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   echo "✅ Homebrew installed successfully."
+
+  echo "🔧 Configuring Homebrew environment"
+  if [[ -f /opt/homebrew/bin/brew ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+  elif [[ -f /home/linuxbrew/.linuxbrew/bin/brew ]]; then
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  fi
 fi
 
 if which -s "gpg"; then
