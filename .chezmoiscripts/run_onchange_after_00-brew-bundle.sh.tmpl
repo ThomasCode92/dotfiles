@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# brew_file hash: {{ include "private_dot_config/homebrew/Brewfile.tmpl" | sha256sum }}
+# brew_file hash: {{ include "private_dot_config/homebrew/Brewfile" | sha256sum }}
 
 echo "📦 Running brew bundle..."
 if brew bundle --file={{ .chezmoi.homeDir }}/.config/homebrew/Brewfile; then

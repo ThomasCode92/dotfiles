@@ -1,10 +1,10 @@
 #!/bin/bash
 
-{{ if .isWorkComputer && ne .chezmoi.os "darwin" }}
-echo "📟 Installing terminal emulators..."
-{{ else }}
+{{ if eq .chezmoi.os "darwin" }}
 exit 0
 {{ end }}
+
+echo "📟 Installing terminal emulators..."
 
 ## Install ghostty
 if ! command -v ghostty &>/dev/null; then

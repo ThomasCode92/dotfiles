@@ -1,9 +1,6 @@
 #!/bin/bash
 
-{{ if .isWorkComputer }}
-{{ if ne .chezmoi.os "linux" }}
-echo "⚠️ This script is intended for Linux systems. Skipping installation."
-echo "   Obsidian will be installed via Homebrew on macOS."
+{{ if eq .chezmoi.os "darwin" }}
 exit 0
 {{ end }}
 
@@ -16,4 +13,3 @@ URL="https://github.com/obsidianmd/obsidian-releases/releases/download/$VERSION/
 curl -L -o "$DEB_FILE" "$URL"
 sudo dpkg -i "$DEB_FILE"
 rm "$DEB_FILE"
-{{ end }}
