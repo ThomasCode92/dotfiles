@@ -1,0 +1,8 @@
+#!/bin/bash
+
+{{ if eq .chezmoi.os "darwin" }}
+sudo cp /Users/{{- output "whoami" | trim }}/.config/kanata/com.my.kanata.plist /Library/LaunchDaemons/
+
+sudo launchctl load /Library/LaunchDaemons/com.my.kanata.plist
+sudo launchctl start com.my.kanata
+{{ end }}

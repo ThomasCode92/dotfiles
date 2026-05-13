@@ -31,5 +31,6 @@ cask "font-jetbrains-mono-nerd-font" if OS.mac?
 
 # Work computer only tools
 cask "ghostty" if OS.mac? # For Linux, see run_once_terminal.sh
+cask "karabiner-elements" if OS.mac?
 cask "kitty" if OS.mac? # For Linux, see run_once_terminal.sh
 cask "obsidian" if OS.mac? # For Linux, see run_once_install_obsidian.sh

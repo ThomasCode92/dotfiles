@@ -3,7 +3,9 @@
 )
 
 (defsrc
+  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10   f11   f12
   caps a s d f j k l ;
+  fn
 )
 
 (defvar
@@ -21,9 +23,19 @@
   k-mod (tap-hold $tap-time $hold-time k rsft)
   l-mod (tap-hold $tap-time $hold-time l lalt)
   semicolon-mod (tap-hold $tap-time $hold-time ; rmet)
+  fnl (tap-hold 200 200 fn (layer-toggle fn))
 )
 
 (deflayer base
   ;; Home Row Modifiers
+  brdn  brup  _    _    _    _   prev  pp  next  mute  vold  volu
   @escctrl @a-mod @s-mod @d-mod @f-mod @j-mod @k-mod @l-mod @semicolon-mod
+  @fnl
 )
+
+(deflayer fn
+  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10   f11   f12
+  @escctrl _ _ _ _ _ _ _ _
+  fn
+)
+
