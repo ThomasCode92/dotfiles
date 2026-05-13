@@ -11,7 +11,6 @@ echo y | fish_config theme save catppuccin-mocha >/dev/null 2>&1
 # source applications
 starship init fish | source
 zoxide init fish | source
-source ~/.asdf/asdf.fish
 
 # environment variables
 set -gx PATH ~/.local/bin $PATH
