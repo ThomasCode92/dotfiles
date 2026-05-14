@@ -30,8 +30,8 @@ disabled = false
 style = "bg:red fg:crust"
 
 [os.symbols]
+Macos = "󰀵"
 Ubuntu = "󰕈"
-Raspbian = "󰐿"
 Linux = "󰌽"
 Alpine = ""
 Amazon = ""
