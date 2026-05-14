@@ -1,11 +1,24 @@
-#!/usr/bin/env fish
+#!/bin/bash
 
 # fish_plugins hash: {{ include "private_dot_config/fish/fish_plugins" | sha256sum }}
 
-if not functions -q fisher
-    echo "🪝 fisher not found. Installing fisher..."
-    curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
-    echo "✅ fisher installed successfully."
-end
+if ! fish -c "functions -q fisher" &>/dev/null; then
+  echo "🪝 fisher not found. Installing fisher..."
+  fish -c "curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher"
+  echo "✅ fisher installed successfully."
+fi
 
-fisher update
+fish -c "fisher update"
+
+if [[ "$(basename "$SHELL")" != "fish" ]]; then
+  echo "🔧 Setting fish as the default shell..."
+  echo "$(which fish)" | sudo tee -a /etc/shells
+  if chsh -s "$(which fish)"; then
+    echo "✅ Default shell set to fish. Re-login to apply."
+  else
+    echo "🔧 Could not set fish as default shell automatically."
+    echo "   Run manually: chsh -s \$(which fish)"
+  fi
+else
+  echo "⏭️ fish is already the default shell."
+fi
