@@ -1,6 +1,8 @@
 # Homebrew Bundle file for macOS and Linux (with Homebrew installed)
 # Managed by chezmoi - run `brew bundle --file=~/.config/homebrew/Brewfile` to install
 
+tap "sdkman/tap"
+
 brew "asdf"
 brew "atuin"
 brew "bat"
@@ -18,6 +20,7 @@ brew "lazydocker"
 brew "lazygit"
 brew "neovim"
 brew "ripgrep"
+brew "sdkman/tap/sdkman-cli"
 brew "starship"
 brew "tmux"
 brew "websocat"
