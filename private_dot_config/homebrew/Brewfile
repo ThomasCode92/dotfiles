@@ -2,6 +2,7 @@
 # Managed by chezmoi - run `brew bundle --file=~/.config/homebrew/Brewfile` to install
 
 tap "sdkman/tap"
+tap "nikitabobko/tap"
 
 brew "asdf"
 brew "atuin"
@@ -32,6 +33,7 @@ cask "font-hack-nerd-font" if OS.mac?
 cask "font-jetbrains-mono-nerd-font" if OS.mac?
 
 # Work computer only tools
+cask "aerospace" if OS.mac?
 cask "beekeeper-studio" if OS.mac?
 cask "firefox" if OS.mac?
 cask "ghostty" if OS.mac? # For Linux, see run_once_terminal.sh
