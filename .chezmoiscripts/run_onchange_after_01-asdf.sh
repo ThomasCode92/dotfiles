@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# tool_versions hash: {{ include "dot_tool_versions" | sha256sum }}
+
 set -euo pipefail
 
 # Path to the tool-versions file (default: .tool-versions in current dir)
