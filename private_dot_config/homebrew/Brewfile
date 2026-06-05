@@ -7,6 +7,7 @@ tap "nikitabobko/tap"
 brew "asdf"
 brew "atuin"
 brew "bat"
+brew "btop"
 brew "carapace"
 brew "colima"
 brew "docker"
@@ -20,6 +21,7 @@ brew "ffmpeg"
 brew "fish"
 brew "fzf"
 brew "gh"
+brew "htop"
 brew "jq"
 brew "k9s"
 brew "kanata"
@@ -34,6 +36,7 @@ brew "ripgrep"
 brew "sdkman/tap/sdkman-cli"
 brew "starship"
 brew "tmux"
+brew "watch"
 brew "websocat"
 brew "yazi"
 brew "zoxide"
@@ -52,5 +55,6 @@ cask "karabiner-elements" if OS.mac?
 cask "kitty" if OS.mac? # For Linux, see run_once_terminal.sh
 cask "obsidian" if OS.mac? # For Linux, see run_once_install_obsidian.sh
 cask "postman" if OS.mac?
+cask "slack" if OS.mac?
 cask "spotify" if OS.mac?
 cask "whatsapp" if OS.mac?
