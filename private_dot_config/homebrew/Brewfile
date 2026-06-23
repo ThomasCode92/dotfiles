@@ -38,7 +38,6 @@ brew "starship"
 brew "tmux"
 brew "watch"
 brew "websocat"
-brew "yazi"
 brew "zoxide"
 
 # Nerd Fonts (Hack and JetBrains Mono)
