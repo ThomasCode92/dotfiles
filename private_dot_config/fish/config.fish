@@ -19,7 +19,7 @@ set -gx VISUAL nvim
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # aliases
-alias ls="eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions"
+alias lz="eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions"
 alias lg="lazygit"
 alias ld="lazydocker"
 
