@@ -62,4 +62,5 @@ cask "obsidian" if OS.mac? # For Linux, see run_once_install_obsidian.sh
 cask "postman" if OS.mac?
 cask "slack" if OS.mac?
 cask "spotify" if OS.mac?
+cask "visual-studio-code" if OS.mac?
 cask "whatsapp" if OS.mac?
