@@ -2,7 +2,7 @@ bun 1.2.10
 golang 1.26.0
 jbang 0.138.0
 just 1.46.0
-nodejs 22.13.0
-pnpm 10.11.0
+nodejs 22.19.0
+pnpm 11.17.0
 sqlite 3.51.2
 yarn 1.22.22
