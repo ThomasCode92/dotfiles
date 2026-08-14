@@ -6,7 +6,15 @@ type pass >/dev/null 2>&1 && exit
 # install password manager
 case "$(uname -s)" in
 Linux)
-  sudo apt install pass
+  if command -v pacman &>/dev/null; then
+    sudo pacman -S --needed --noconfirm pass
+  elif command -v apt &>/dev/null; then
+    sudo apt update
+    sudo apt install -y pass
+  else
+    echo "❌ Unsupported Linux distribution"
+    exit 1
+  fi
   ;;
 Darwin)
   brew install pass
