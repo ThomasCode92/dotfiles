@@ -2,11 +2,17 @@
 	process-unmapped-keys yes
 )
 
+{{- if eq .chezmoi.os "darwin" }}
 (defsrc
   f1   f2   f3   f4   f5   f6   f7   f8   f9   f10   f11   f12
   caps a s d f j k l ;
   fn
 )
+{{- else if eq .chezmoi.os "linux" }}
+(defsrc
+  caps a s d f j k l ;
+)
+{{- end }}
 
 (defvar
   tap-time 200
@@ -23,9 +29,12 @@
   k-mod (tap-hold $tap-time $hold-time k rsft)
   l-mod (tap-hold $tap-time $hold-time l lalt)
   semicolon-mod (tap-hold $tap-time $hold-time ; rmet)
+{{- if eq .chezmoi.os "darwin" }}
   fnl (tap-hold 200 200 fn (layer-toggle fn))
+{{- end }}
 )
 
+{{- if eq .chezmoi.os "darwin" }}
 (deflayer base
   ;; Home Row Modifiers
   brdn  brup  _    _    _    _   prev  pp  next  mute  vold  volu
@@ -38,4 +47,9 @@
   @escctrl _ _ _ _ _ _ _ _
   fn
 )
-
+{{- else if eq .chezmoi.os "linux" }}
+(deflayer base
+  ;; Home Row Modifiers
+  @escctrl @a-mod @s-mod @d-mod @f-mod @j-mod @k-mod @l-mod @semicolon-mod
+)
+{{- end }}
