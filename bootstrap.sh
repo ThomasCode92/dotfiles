@@ -1,51 +1,106 @@
 #!/bin/bash
-
 set -e
 
 echo "🚀 Setting up dotfiles"
 
-if which -s "brew"; then
-  echo "✅ Homebrew is already installed."
-else
-  echo "🍺 Installing Homebrew"
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  echo "✅ Homebrew installed successfully."
+# ---------------------------------------------------------
+# Detect OS and install packages
+# ---------------------------------------------------------
 
-  echo "🔧 Configuring Homebrew environment"
-  if [[ -f /opt/homebrew/bin/brew ]]; then
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-  elif [[ -f /home/linuxbrew/.linuxbrew/bin/brew ]]; then
-    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+if [[ "$(uname)" == "Darwin" ]]; then
+  echo "🍎 macOS detected"
+
+  if ! command -v brew &>/dev/null; then
+    echo "🍺 Installing Homebrew"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+    if [[ -f /opt/homebrew/bin/brew ]]; then
+      eval "$(/opt/homebrew/bin/brew shellenv)"
+    elif [[ -f /usr/local/bin/brew ]]; then
+      eval "$(/usr/local/bin/brew shellenv)"
+    fi
   fi
-fi
 
-if which -s "gpg"; then
-  echo "✅ GPG is already installed."
+  brew install gnupg chezmoi
+
+elif [[ "$(uname)" == "Linux" ]]; then
+  echo "🐧 Linux detected"
+
+  if command -v pacman &>/dev/null; then
+    echo "🔵 Manjaro/Arch detected"
+    sudo pacman -S --needed --noconfirm gnupg chezmoi
+
+  elif command -v apt &>/dev/null; then
+    echo "🟠 Ubuntu/Debian detected"
+    sudo apt update
+    sudo apt install -y gnupg chezmoi
+
+  else
+    echo "❌ Unsupported Linux distribution"
+    exit 1
+  fi
+
 else
-  echo "🔐 Installing GPG"
-  brew install gnupg
-  echo "✅ GPG installed successfully."
+  echo "❌ Unsupported operating system"
+  exit 1
 fi
 
-if which -s "chezmoi"; then
-  echo "✅ Chezmoi is already installed."
+# ---------------------------------------------------------
+# GPG
+# ---------------------------------------------------------
+
+if command -v gpg &>/dev/null; then
+  echo "✅ GPG is installed"
 else
-  echo "⚪️ Installing Chezmoi"
-  brew install chezmoi
+  echo "❌ GPG installation failed"
+  exit 1
 fi
 
-if [ -d "$HOME/.local/share/chezmoi/.git" ]; then
-  echo "ℹ️ Chezmoi already initialized, pulling latest changes..."
+echo "🗝️ Importing GPG keys"
+
+gpg --import "$HOME/privatekey.asc"
+gpg --import "$HOME/publickey.asc"
+
+export PASS_GPG_KEY="$(
+  gpg --list-keys \
+    --keyid-format long \
+    --with-colons |
+    awk -F: '$1 == "pub" { print $5; exit }'
+)"
+
+if [[ -z "$PASS_GPG_KEY" ]]; then
+  echo "❌ Could not determine GPG key"
+  exit 1
+fi
+
+echo "🔑 GPG key: $PASS_GPG_KEY"
+
+# ---------------------------------------------------------
+# Chezmoi
+# ---------------------------------------------------------
+
+if command -v chezmoi &>/dev/null; then
+  echo "✅ Chezmoi is installed"
+else
+  echo "❌ Chezmoi installation failed"
+  exit 1
+fi
+
+if [[ -d "$(chezmoi source-path)/.git" ]]; then
+  echo "ℹ️ Chezmoi already initialized"
   chezmoi update
   echo "✅ Chezmoi updated"
-else
-  echo "🗝️ Setting up GPG key"
-  gpg --import ~/privatekey.asc
-  gpg --import ~/publickey.asc
-  export PASS_GPG_KEY=$(gpg --list-keys --keyid-format long --with-colons | grep '^pub' | cut -d: -f5)
-
-  echo "🔧 Initializing Chezmoi"
-  chezmoi init $GITHUB_USERNAME
-  chezmoi apply
-  echo "✅ Chezmoi initialized"
+  exit 0
 fi
+
+if [[ -z "${GITHUB_USERNAME:-}" ]]; then
+  echo "❌ GITHUB_USERNAME is not set"
+  exit 1
+fi
+
+echo "🔧 Initializing Chezmoi"
+
+chezmoi init "$GITHUB_USERNAME"
+chezmoi apply
+
+echo "✅ Dotfiles setup complete"

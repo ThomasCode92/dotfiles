@@ -1,3 +1,4 @@
+{{- if eq .chezmoi.os "darwin" -}}
 # Homebrew Bundle file for macOS and Linux (with Homebrew installed)
 # Managed by chezmoi - run `brew bundle --file=~/.config/homebrew/Brewfile` to install
 
@@ -71,3 +72,4 @@ cask "spotify" if OS.mac?
 cask "unity-hub" if OS.mac?
 cask "visual-studio-code" if OS.mac?
 cask "whatsapp" if OS.mac?
+{{- end -}}
