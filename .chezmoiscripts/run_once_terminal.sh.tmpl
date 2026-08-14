@@ -6,15 +6,6 @@ exit 0
 
 echo "📟 Installing terminal emulators..."
 
-## Install ghostty
-if ! command -v ghostty &>/dev/null; then
-  echo "👻 Installing ghostty..."
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/mkasberg/ghostty-ubuntu/HEAD/install.sh)"
-  echo "✅ Ghostty installed successfully: $(ghostty --version)"
-else
-  echo "⏭️ Installation for ghostty is skipped, was already installed."
-fi
-
 ## Install kitty
 if ! command -v kitty &>/dev/null; then
   echo "🐱 Installing kitty..."

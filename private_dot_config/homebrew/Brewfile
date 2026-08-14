@@ -58,7 +58,6 @@ cask "beekeeper-studio" if OS.mac?
 cask "blender" if OS.mac?
 cask "discord" if OS.mac?
 cask "firefox" if OS.mac?
-cask "ghostty" if OS.mac? # For Linux, see run_once_terminal.sh
 cask "gimp" if OS.mac?
 cask "google-chrome" if OS.mac?
 cask "jetbrains-toolbox" if OS.mac?
