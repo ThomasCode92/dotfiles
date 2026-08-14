@@ -46,7 +46,7 @@ automatically-unhide-macos-hidden-apps = false
 # even when they are invisible.
 # This config version is only available since 'config-version = 2'
 # Fallback value (if you omit the key): persistent-workspaces = []
-persistent-workspaces = ["1", "2", "3", "B", "E", "M", "N", "S", "T"]
+persistent-workspaces = ["1", "2", "3", "B", "E", "G", "M", "N", "S", "T"]
 
 # A callback that runs every time binding mode changes
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -133,6 +133,7 @@ on-mode-changed = []
     alt-3 = 'workspace 3'
     alt-b = 'workspace B' # Browser (Firefox)
     alt-e = 'workspace E' # Editor (IntelliJ)
+    alt-g = 'workspace G' # Game Development
     alt-m = 'workspace M' # Music (Spotify)
     alt-n = 'workspace N' # Notes (Obsidian)
     alt-s = 'workspace S' # Slack
@@ -144,6 +145,7 @@ on-mode-changed = []
     alt-shift-3 = 'move-node-to-workspace 3'
     alt-shift-b = 'move-node-to-workspace B' # Browser (Firefox)
     alt-shift-e = 'move-node-to-workspace E' # Editor (IntelliJ)
+    alt-shift-g = 'move-node-to-workspace G' # Game Development
     alt-shift-m = 'move-node-to-workspace M' # Music (Spotify)
     alt-shift-n = 'move-node-to-workspace N' # Notes (Obsidian)
     alt-shift-s = 'move-node-to-workspace S' # Slack

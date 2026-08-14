@@ -1,4 +1,5 @@
 bun 1.2.10
+dotnet 10.0.302
 golang 1.26.0
 jbang 0.138.0
 just 1.46.0
