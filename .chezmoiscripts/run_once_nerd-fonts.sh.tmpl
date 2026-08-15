@@ -40,7 +40,15 @@ install_nerd_font() {
   fi
 
   echo "📦 Extracting $font_display_name..."
-  unzip -q "${font_name}.zip" -d "$font_name"
+  if command -v unzip &>/dev/null; then
+    unzip -q "${font_name}.zip" -d "$font_name"
+  elif command -v python3 &>/dev/null; then
+    python3 -m zipfile -e "${font_name}.zip" "$font_name"
+  else
+    echo "⏭️  No unzip or python3 available to extract $font_display_name"
+    rm -rf "$TEMP_DIR"
+    return 1
+  fi
 
   # Install fonts (only .ttf files)
   echo "💾 Installing $font_display_name to $FONT_DIR..."
@@ -53,10 +61,10 @@ install_nerd_font() {
 }
 
 # Install Hack Nerd Font
-install_nerd_font "Hack" "Hack Nerd Font"
+install_nerd_font "Hack" "Hack Nerd Font" || echo "⚠️ Hack Nerd Font install skipped"
 
 # Install JetBrains Mono Nerd Font
-install_nerd_font "JetBrainsMono" "JetBrainsMono Nerd Font"
+install_nerd_font "JetBrainsMono" "JetBrainsMono Nerd Font" || echo "⚠️ JetBrainsMono Nerd Font install skipped"
 
 # Update font cache
 echo "🔄 Updating font cache..."
