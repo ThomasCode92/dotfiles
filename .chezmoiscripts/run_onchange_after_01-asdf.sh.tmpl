@@ -6,6 +6,7 @@
 if ! command -v asdf &>/dev/null; then
   echo "📦 Installing asdf..."
   if command -v pacman &>/dev/null; then
+    sudo pacman -S --needed base-devel unzip
     git clone https://aur.archlinux.org/asdf-vm.git "$HOME/.asdf-vm"
     cd "$HOME/.asdf-vm" && makepkg -si
     sudo pacman -S --needed --noconfirm asdf-vm # Arch/Manjaro, official community repo
