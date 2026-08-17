@@ -2,6 +2,23 @@
 
 # tool_versions hash: {{ include "dot_tool-versions" | sha256sum }}
 
+{{ if eq .chezmoi.os "linux" }}
+if ! command -v asdf &>/dev/null; then
+  echo "📦 Installing asdf..."
+  if command -v pacman &>/dev/null; then
+    git clone https://aur.archlinux.org/asdf-vm.git "$HOME/.asdf-vm"
+    cd "$HOME/.asdf-vm" && makepkg -si
+    sudo pacman -S --needed --noconfirm asdf-vm # Arch/Manjaro, official community repo
+  elif command -v apt &>/dev/null; then
+    git clone https://github.com/asdf-vm/asdf.git "$HOME/.asdf" --branch v0.20.0
+    export PATH="$HOME/.asdf/bin:$PATH" # needed for the rest of this script
+  else
+    echo "❌ Unsupported Linux distribution for asdf install"
+    exit 1
+  fi
+fi
+{{ end }}
+
 set -euo pipefail
 
 # Path to the tool-versions file (default: .tool-versions in current dir)
