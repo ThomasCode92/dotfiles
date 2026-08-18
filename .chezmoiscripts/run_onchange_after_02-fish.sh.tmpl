@@ -2,21 +2,6 @@
 
 # fish_plugins hash: {{ include "private_dot_config/fish/fish_plugins" | sha256sum }}
 
-{{ if eq .chezmoi.os "linux" }}
-if ! command -v fish &>/dev/null; then
-  echo "🐟 Installing fish..."
-  if command -v pacman &>/dev/null; then
-    sudo pacman -S --needed --noconfirm fish
-  elif command -v apt &>/dev/null; then
-    sudo apt update
-    sudo apt install -y fish
-  else
-    echo "❌ Unsupported Linux distribution for fish install"
-    exit 1
-  fi
-fi
-{{ end }}
-
 if ! fish -c "functions -q fisher" &>/dev/null; then
   echo "🪝 fisher not found. Installing fisher..."
   fish -c "curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher"

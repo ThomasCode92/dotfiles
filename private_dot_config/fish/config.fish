@@ -16,7 +16,6 @@ zoxide init fish | source
 set -gx PATH ~/.local/bin $PATH
 set -gx EDITOR nvim
 set -gx VISUAL nvim
-eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # aliases
 alias lz="eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions"
@@ -25,6 +24,3 @@ alias ld="lazydocker"
 
 # search shell history with atuin
 atuin init fish --disable-up-arrow | source
-
-# opencode
-fish_add_path /Users/{{ output "whoami" | trim }}/.opencode/bin
