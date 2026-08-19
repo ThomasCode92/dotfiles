@@ -9,13 +9,16 @@ fi
 
 echo "🐟 Installing fish and dependencies..."
 
+CLI_TOOLS=(bat eza fd fzf htop jq lazydocker lazygit tmux)
+APPLICATIONS=(kitty neovim)
+
 if command -v pacman &>/dev/null; then
-  sudo pacman -S --needed --noconfirm fish starship fzf
+  sudo pacman -S --needed --noconfirm fish starship fzf "${CLI_TOOLS[@]}" "${APPLICATIONS[@]}"
 elif command -v apt &>/dev/null; then
   sudo apt update
-  sudo apt install -y fish starship fzf
+  sudo apt install -y fish starship fzf "${CLI_TOOLS[@]}" "${APPLICATIONS[@]}"
 else
-  echo "❌ Unsupported Linux distribution for fish install"
+  echo "Unsupported Linux distribution for fish install"
   exit 1
 fi
 
@@ -30,7 +33,19 @@ ARCH=$(uname -m)
 curl -fsSL "https://github.com/carapace-sh/carapace-bin/releases/download/${VERSION}/carapace-bin_${VERSION#v}_linux_${ARCH}.tar.gz" | sudo tar -xzC /usr/local/bin carapace
 
 # atuin
-curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh
+if command -v atuin &>/dev/null; then
+  echo "✓ atuin is already installed, skipping"
+else
+  echo "📦 Installing atuin..."
+  curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh
+fi
 
 # sdkman
-curl -s "https://get.sdkman.io" | bash
+if [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]]; then
+  echo "✓ SDKMAN is already installed, skipping"
+else
+  echo "📦 Installing SDKMAN..."
+  curl -s "https://get.sdkman.io" | bash
+fi
+
+echo "✅ Installation complete!"
