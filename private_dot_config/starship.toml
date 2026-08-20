@@ -30,13 +30,13 @@ disabled = false
 style = "bg:red fg:crust"
 
 [os.symbols]
-Macos = "󰀵"
-Ubuntu = "󰕈"
-Linux = "󰌽"
 Alpine = ""
-Amazon = ""
 Arch = "󰣇"
 Debian = "󰣚"
+Linux = "󰌽"
+Macos = "󰀵"
+Manjaro = ""
+Ubuntu = "󰕈"
 
 [username]
 show_always = true
