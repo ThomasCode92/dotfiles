@@ -10,9 +10,10 @@ $directory\
 $git_branch\
 $git_status\
 [](fg:yellow bg:green)\
+$dotnet\
 $golang\
-$nodejs\
 $java\
+$nodejs\
 $python\
 [](fg:green bg:sapphire)\
 $docker_context\
@@ -66,8 +67,13 @@ format = '[[ $symbol $branch ](fg:crust bg:yellow)]($style)'
 style = "bg:yellow"
 format = '[[($all_status$ahead_behind )](fg:crust bg:yellow)]($style)'
 
-[nodejs]
-symbol = ""
+[dotnet]
+symbol = ""
+style = "bg:green"
+format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
+
+[golang]
+symbol = ""
 style = "bg:green"
 format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
 
@@ -76,8 +82,8 @@ symbol = " "
 style = "bg:green"
 format = '[[ $symbol($version) ](fg:crust bg:green)]($style)'
 
-[golang]
-symbol = ""
+[nodejs]
+symbol = ""
 style = "bg:green"
 format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
 
