@@ -9,14 +9,24 @@ fi
 
 echo "🐟 Installing fish and dependencies..."
 
-CLI_TOOLS=(bat eza fd fzf htop jq lazydocker lazygit tmux)
+CLI_TOOLS=(base-devel bat eza fd fzf htop jq lazydocker lazygit tmux unzip zip)
 APPLICATIONS=(kitty neovim)
 
 if command -v pacman &>/dev/null; then
   sudo pacman -S --needed --noconfirm fish starship fzf "${CLI_TOOLS[@]}" "${APPLICATIONS[@]}"
+
+  # asdf
+  git clone https://aur.archlinux.org/asdf-vm.git "$HOME/.asdf-vm"
+  cd "$HOME/.asdf-vm" && makepkg -si
 elif command -v apt &>/dev/null; then
   sudo apt update
   sudo apt install -y fish starship fzf "${CLI_TOOLS[@]}" "${APPLICATIONS[@]}"
+
+  # asdf
+  git clone https://github.com/asdf-vm/asdf.git "$HOME/.asdf" --branch v0.20.0
+  cd "$HOME/.asdf" && make
+  export PATH="$HOME/.asdf/bin:$PATH"
+
 else
   echo "Unsupported Linux distribution for fish install"
   exit 1
