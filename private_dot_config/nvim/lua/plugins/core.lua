@@ -1,6 +1,13 @@
 return {
   {
     "christoomey/vim-tmux-navigator",
+    init = function()
+      vim.g.tmux_navigator_no_mappings = 1
+    end,
+    config = function()
+      local f = vim.fn.expand("~/Documents/repos/vim-herdr-navigation/editor/nvim.lua")
+      if vim.fn.filereadable(f) == 1 then dofile(f) end
+    end,
     keys = {
       { "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
       { "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
