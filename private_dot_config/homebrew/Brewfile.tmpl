@@ -1,5 +1,5 @@
 {{- if eq .chezmoi.os "darwin" -}}
-# Homebrew Bundle file for macOS and Linux (with Homebrew installed)
+# Homebrew Bundle file for macOS
 # Managed by chezmoi - run `brew bundle --file=~/.config/homebrew/Brewfile` to install
 
 tap "sdkman/tap"
@@ -7,7 +7,7 @@ tap "nikitabobko/tap"
 
 brew "asdf"
 brew "atuin"
-brew "az" if OS.mac? # Azure CLI
+brew "az"
 brew "bat"
 brew "btop"
 brew "carapace"
@@ -25,7 +25,6 @@ brew "fzf"
 brew "gh"
 brew "git-lfs"
 brew "gnupg"
-brew "herdr"
 brew "htop"
 brew "jq"
 brew "k9s"
@@ -40,7 +39,7 @@ brew "ollama"
 brew "openapi-generator"
 brew "qemu"
 brew "ripgrep"
-brew "sdkman/tap/sdkman-cli"
+brew "sdkman-cli"
 brew "starship"
 brew "tmux"
 brew "tree-sitter-cli"
@@ -52,24 +51,24 @@ brew "zoxide"
 cask "font-hack-nerd-font" if OS.mac?
 cask "font-jetbrains-mono-nerd-font" if OS.mac?
 
-# Work computer only tools
-cask "aerospace" if OS.mac?
-cask "audacity" if OS.mac?
-cask "beekeeper-studio" if OS.mac?
-cask "blender" if OS.mac?
-cask "discord" if OS.mac?
-cask "firefox" if OS.mac?
-cask "gimp" if OS.mac?
-cask "google-chrome" if OS.mac?
-cask "jetbrains-toolbox" if OS.mac?
-cask "karabiner-elements" if OS.mac?
-cask "kitty" if OS.mac? # For Linux, see run_once_terminal.sh
-cask "logi-options+" if OS.mac?
-cask "obsidian" if OS.mac? # For Linux, see run_once_install_obsidian.sh
-cask "postman" if OS.mac?
-cask "slack" if OS.mac?
-cask "spotify" if OS.mac?
-cask "unity-hub" if OS.mac?
-cask "visual-studio-code" if OS.mac?
-cask "whatsapp" if OS.mac?
+# Applications
+cask "aerospace"
+cask "audacity"
+cask "beekeeper-studio"
+cask "blender"
+cask "discord"
+cask "firefox"
+cask "gimp"
+cask "google-chrome"
+cask "jetbrains-toolbox"
+cask "karabiner-elements"
+cask "kitty"
+cask "logi-options+"
+cask "obsidian"
+cask "postman"
+cask "slack"
+cask "spotify"
+cask "unity-hub"
+cask "visual-studio-code"
+cask "whatsapp"
 {{- end -}}
