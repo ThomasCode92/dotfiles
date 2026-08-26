@@ -33,14 +33,6 @@ else
   exit 1
 fi
 
-# herdr
-echo "📦 Installing herdr..."
-if command -v herdr &>/dev/null; then
-  echo "✓ herdr is already installed, skipping"
-else
-  curl -fsSL https://herdr.dev/install.sh | sh
-fi
-
 # zoxide
 echo "📦 Installing zoxide..."
 curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
