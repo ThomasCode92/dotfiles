@@ -1,7 +1,11 @@
 #!/bin/bash
 
 echo "📦 Installing herdr..."
-curl -fsSL https://herdr.dev/install.sh | sh
+if ! command -v herdr &>/dev/null; then
+  curl -fsSL https://herdr.dev/install.sh | sh
+else
+  echo "✓ herdr is already installed, skipping"
+fi
 
 echo "📦 Installing plugins..."
 mkdir -p "$HOME/.herdr"
