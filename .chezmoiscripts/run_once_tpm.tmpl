@@ -1,9 +1,15 @@
 #!/bin/bash
 
-if [[ ! -e ~/.tmux/plugins/ ]]; then
+TMUX_PLUGIN_DIR="$HOME/.tmux/plugins"
+
+if [[ ! -e "$TMUX_PLUGIN_DIR/tpm" ]]; then
   echo "📦 Installing tpm..."
-  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+  git clone https://github.com/tmux-plugins/tpm "$TMUX_PLUGIN_DIR/tpm"
   echo "✅ tpm installed successfully"
 else
   echo "⏭️  tpm already installed, installation skipped"
 fi
+
+echo "🔌 Installing tmux plugins..."
+"$TMUX_PLUGIN_DIR/tpm/scripts/install_plugins.sh"
+echo "✅ tmux plugins installed successfully"
