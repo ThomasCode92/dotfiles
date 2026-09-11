@@ -9,7 +9,7 @@ fi
 
 echo "🐟 Installing fish and dependencies..."
 
-CLI_TOOLS=(base-devel bat eza fd fzf htop jq lazydocker lazygit tmux unzip zip)
+CLI_TOOLS=(base-devel bat eza fd fzf htop jq lazydocker lazygit podman tmux unzip zip)
 APPLICATIONS=(kitty neovim)
 
 echo "📦 Installing CLI tools and applications..."
