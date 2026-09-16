@@ -16,3 +16,11 @@ if ! command -v pi &>/dev/null; then
 else
   echo "⏭️ Pi CLI already installed."
 fi
+
+if ! command -v olloma &>/dev/null; then
+  echo "🤖 Installing Ollama..."
+  curl -fsSL https://ollama.com/install.sh | sh
+  echo "✅ Ollama installed successfully."
+else
+  echo "⏭️ Ollama already installed."
+fi
