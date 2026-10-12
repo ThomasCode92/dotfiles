@@ -17,7 +17,15 @@ else
   echo "⏭️ Pi CLI already installed."
 fi
 
-if ! command -v olloma &>/dev/null; then
+if ! command -v copilot &>/dev/null; then
+  echo "🤖 Installing the Copilot CLI..."
+  curl -fsSL https://gh.io/copilot-install | bash
+  echo "✅ Copilot CLI installed successfully."
+else
+  echo "⏭️ Copilot CLI already installed."
+fi
+
+if ! command -v ollama &>/dev/null; then
   echo "🤖 Installing Ollama..."
   curl -fsSL https://ollama.com/install.sh | sh
   echo "✅ Ollama installed successfully."
