@@ -17,6 +17,14 @@ else
   echo "⏭️ Pi CLI already installed."
 fi
 
+if ! command -v codex &>/dev/null; then
+  echo "🤖 Installing the Codex CLI..."
+  curl -fsSL https://chatgpt.com/codex/install.sh | sh
+  echo "✅ Codex CLI installed successfully."
+else
+  echo "⏭️ Codex CLI already installed."
+fi
+
 if ! command -v copilot &>/dev/null; then
   echo "🤖 Installing the Copilot CLI..."
   curl -fsSL https://gh.io/copilot-install | bash
