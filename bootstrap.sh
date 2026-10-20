@@ -4,50 +4,39 @@ set -e
 echo "🚀 Setting up dotfiles"
 
 # ---------------------------------------------------------
-# Detect OS and install packages
+# Install and Configure Homebrew
 # ---------------------------------------------------------
+
+echo "🍺 Installing Homebrew"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 if [[ "$(uname)" == "Darwin" ]]; then
   echo "🍎 macOS detected"
-
-  if ! command -v brew &>/dev/null; then
-    echo "🍺 Installing Homebrew"
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-    if [[ -f /opt/homebrew/bin/brew ]]; then
-      eval "$(/opt/homebrew/bin/brew shellenv)"
-    elif [[ -f /usr/local/bin/brew ]]; then
-      eval "$(/usr/local/bin/brew shellenv)"
-    fi
+  if [[ -f /opt/homebrew/bin/brew ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+  elif [[ -f /usr/local/bin/brew ]]; then
+    eval "$(/usr/local/bin/brew shellenv)"
   fi
-
-  brew install gnupg chezmoi
 
 elif [[ "$(uname)" == "Linux" ]]; then
   echo "🐧 Linux detected"
-
-  if command -v pacman &>/dev/null; then
-    echo "🔵 Manjaro/Arch detected"
-    sudo pacman -S --needed --noconfirm gnupg chezmoi
-
-  elif command -v apt &>/dev/null; then
-    echo "🟠 Ubuntu/Debian detected"
-    sudo apt update
-    sudo apt install -y gnupg chezmoi
-
-  else
-    echo "❌ Unsupported Linux distribution"
-    exit 1
-  fi
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 else
   echo "❌ Unsupported operating system"
   exit 1
 fi
 
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
 # ---------------------------------------------------------
 # GPG
 # ---------------------------------------------------------
+
+if ! command -v gpg &>/dev/null; then
+  echo "🍺 Installing GPG"
+  brew install gnupg
+fi
 
 if command -v gpg &>/dev/null; then
   echo "✅ GPG is installed"
@@ -78,6 +67,9 @@ echo "🔑 GPG key: $PASS_GPG_KEY"
 # ---------------------------------------------------------
 # Chezmoi
 # ---------------------------------------------------------
+
+echo "🍺 Installing chezmoi"
+brew install chezmoi
 
 if command -v chezmoi &>/dev/null; then
   echo "✅ Chezmoi is installed"

@@ -1,70 +1,68 @@
-{{- if eq .chezmoi.os "darwin" -}}
 # Homebrew Bundle file for macOS
 # Managed by chezmoi - run `brew bundle --file=~/.config/homebrew/Brewfile` to install
 
 tap "sdkman/tap"
 tap "nikitabobko/tap"
 
-brew "asdf"
-brew "atuin"
-brew "bat"
-brew "btop"
-brew "carapace"
-brew "chezmoi"
-brew "colima"
-brew "docker"
-brew "docker-compose"
-brew "dive"
-brew "eza"
-brew "fastfetch"
-brew "fd"
-brew "ffmpeg"
-brew "fish"
-brew "fzf"
-brew "gh"
-brew "gnupg"
-brew "htop"
-brew "jq"
-brew "k9s"
-brew "kanata"
-brew "kubernetes-cli"
-brew "lazydocker"
-brew "lazygit"
-brew "lima"
-brew "lima-additional-guestagents"
-brew "neovim"
-brew "openapi-generator"
-brew "qemu"
-brew "ripgrep"
-brew "sdkman-cli"
-brew "starship"
-brew "tmux"
-brew "tree-sitter-cli"
-brew "watch"
-brew "websocat"
-brew "zoxide"
+brew "asdf" if OS.mac?
+brew "atuin" if OS.mac?
+brew "bat" if OS.mac?
+brew "btop" if OS.mac?
+brew "carapace" if OS.mac?
+brew "chezmoi" if OS.mac?
+brew "colima" if OS.mac?
+brew "docker" if OS.mac?
+brew "docker-compose" if OS.mac?
+brew "dive" if OS.mac?
+brew "eza" if OS.mac?
+brew "fastfetch" if OS.mac?
+brew "fd" if OS.mac?
+brew "ffmpeg" if OS.mac?
+brew "fish" if OS.mac?
+brew "fzf" if OS.mac?
+brew "gh" if OS.mac?
+brew "gnupg" if OS.mac?
+brew "htop" if OS.mac?
+brew "jq" if OS.mac?
+brew "k9s" if OS.mac?
+brew "kanata" if OS.mac?
+brew "kubernetes-cli" if OS.mac?
+brew "lazydocker" if OS.mac?
+brew "lazygit" if OS.mac?
+brew "lima" if OS.mac?
+brew "lima-additional-guestagents" if OS.mac?
+brew "neovim" if OS.mac?
+brew "openapi-generator" if OS.mac?
+brew "qemu" if OS.mac?
+brew "ripgrep" if OS.mac?
+brew "sdkman-cli" if OS.mac?
+brew "starship" if OS.mac?
+brew "tmux" if OS.mac?
+brew "tree-sitter-cli" if OS.mac?
+brew "watch" if OS.mac?
+brew "websocat" if OS.mac?
+brew "zoxide" if OS.mac?
 
 # Nerd Fonts (Hack and JetBrains Mono)
 cask "font-hack-nerd-font" if OS.mac?
 cask "font-jetbrains-mono-nerd-font" if OS.mac?
 
 # Applications
-cask "aerospace"
-cask "azure-cli"
-cask "beekeeper-studio"
-cask "discord"
-cask "firefox"
-cask "gimp"
-cask "google-chrome"
-cask "jetbrains-toolbox"
-cask "karabiner-elements"
-cask "kitty"
-cask "logi-options+"
-cask "obsidian"
-cask "podman-desktop"
-cask "postman"
-cask "slack"
-cask "spotify"
-cask "visual-studio-code"
-cask "whatsapp"
-{{- end -}}
+cask "aerospace" if OS.mac?
+cask "azure-cli" if OS.mac?
+cask "beekeeper-studio" if OS.mac?
+cask "discord" if OS.mac?
+cask "firefox" if OS.mac?
+cask "gimp" if OS.mac?
+cask "google-chrome" if OS.mac?
+cask "jetbrains-toolbox" if OS.mac?
+cask "karabiner-elements" if OS.mac?
+cask "kitty" if OS.mac?
+cask "logi-options+" if OS.mac?
+cask "obsidian" if OS.mac?
+cask "podman-desktop" if OS.mac?
+cask "postman" if OS.mac?
+cask "slack" if OS.mac?
+cask "spotify" if OS.mac?
+cask "visual-studio-code" if OS.mac?
+cask "whatsapp" if OS.mac?

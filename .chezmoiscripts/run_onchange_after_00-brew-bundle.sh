@@ -1,4 +1,3 @@
-{{- if eq .chezmoi.os "darwin" -}}
 #!/bin/bash
 
 # brew_file hash: {{ include "private_dot_config/homebrew/Brewfile.tmpl" | sha256sum }}
@@ -9,4 +8,3 @@ if brew bundle --file={{ .chezmoi.homeDir }}/.config/homebrew/Brewfile; then
 else
   echo "⚠️ brew bundle encountered some issues, but continuing..."
 fi
-{{- end -}}
