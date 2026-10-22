@@ -22,3 +22,4 @@ set -gx VISUAL nvim
 alias lz="eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions"
 alias lg="lazygit"
 alias ld="lazydocker"
+alias wm="workmux"

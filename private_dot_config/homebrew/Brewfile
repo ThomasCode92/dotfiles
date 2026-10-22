@@ -41,6 +41,7 @@ brew "tmux" if OS.mac?
 brew "tree-sitter-cli" if OS.mac?
 brew "watch" if OS.mac?
 brew "websocat" if OS.mac?
+brew "workmux"
 brew "zoxide" if OS.mac?
 
 # Nerd Fonts (Hack and JetBrains Mono)
