@@ -1,9 +1,6 @@
-bun 1.2.10
-dotnet 10.0.302
-golang 1.26.0
+golang 1.27.3
 jbang 0.138.0
 just 1.46.0
-nodejs 22.19.0
+nodejs 24.22.1
 pnpm 11.17.0
 sqlite 3.51.2
-yarn 1.22.22
