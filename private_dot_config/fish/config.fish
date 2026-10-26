@@ -13,10 +13,22 @@ atuin init fish --disable-up-arrow | source
 # enable transience, using starship
 enable_transience
 
+# update $PATH
+fish_add_path "$HOME/.opencode/bin"
+
 # environment variables
 set -gx PATH ~/.local/bin $PATH
 set -gx EDITOR nvim
 set -gx VISUAL nvim
+
+# remove duplicate and missing PATH entries
+set -l clean_path
+for dir in $PATH
+    if test -d $dir; and not contains -- $dir $clean_path
+        set -a clean_path $dir
+    end
+end
+set -gx PATH $clean_path
 
 # aliases
 alias lz="eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions"
