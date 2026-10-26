@@ -9,6 +9,8 @@ echo y | fish_config theme save catppuccin-mocha >/dev/null 2>&1
 starship init fish | source
 zoxide init fish | source
 atuin init fish --disable-up-arrow | source
+fzf --fish | source
+carapace _carapace | source
 
 # enable transience, using starship
 enable_transience
@@ -20,6 +22,7 @@ fish_add_path "$HOME/.opencode/bin"
 set -gx PATH ~/.local/bin $PATH
 set -gx EDITOR nvim
 set -gx VISUAL nvim
+set -Ux CARAPACE_BRIDGES 'zsh,fish,bash,inshellisense'
 
 # remove duplicate and missing PATH entries
 set -l clean_path

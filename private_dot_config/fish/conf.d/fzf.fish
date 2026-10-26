@@ -1,6 +1,3 @@
-# source fzf shell integration
-fzf --fish | source
-
 # setup fzf theme
 set fg "#CDD6F4" # Text
 set bg "#1E1E2E" # Background
@@ -17,7 +14,6 @@ set -gx FZF_CTRL_T_OPTS "--preview 'bat -n --color=always --line-range :500 {}'"
 set -gx FZF_ALT_C_OPTS "--preview 'eza --tree --color=always {} | head -200'"
 
 # custom settings for fzf.fish
-set -gx $EDITOR nvim
 set fzf_directory_opts --bind "ctrl-o:execute($EDITOR {} &> /dev/tty)"
 set fzf_fd_opts --hidden --max-depth 5
 set fzf_preview_dir_cmd eza --all --color=always --icons=always
