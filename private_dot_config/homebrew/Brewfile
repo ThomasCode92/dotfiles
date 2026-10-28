@@ -6,7 +6,7 @@ tap "nikitabobko/tap"
 
 brew "asdf"
 brew "atuin"
-brew "bat" if OS.mac?
+brew "bat"
 brew "btop" if OS.mac?
 brew "carapace"
 brew "chezmoi" if OS.mac?
@@ -14,30 +14,30 @@ brew "colima" if OS.mac?
 brew "docker" if OS.mac?
 brew "docker-compose" if OS.mac?
 brew "dive" if OS.mac?
-brew "eza" if OS.mac?
+brew "eza"
 brew "fastfetch" if OS.mac?
-brew "fd" if OS.mac?
+brew "fd"
 brew "ffmpeg" if OS.mac?
-brew "fish" if OS.mac?
-brew "fzf" if OS.mac?
+brew "fish"
+brew "fzf"
 brew "gh" if OS.mac?
 brew "gnupg" if OS.mac?
-brew "htop" if OS.mac?
-brew "jq" if OS.mac?
+brew "htop"
+brew "jq"
 brew "k9s" if OS.mac?
 brew "kanata" if OS.mac?
 brew "kubernetes-cli" if OS.mac?
-brew "lazydocker" if OS.mac?
-brew "lazygit" if OS.mac?
+brew "lazydocker"
+brew "lazygit"
 brew "lima" if OS.mac?
 brew "lima-additional-guestagents" if OS.mac?
-brew "neovim" if OS.mac?
+brew "neovim"
 brew "openapi-generator" if OS.mac?
 brew "qemu" if OS.mac?
 brew "ripgrep" if OS.mac?
 brew "sdkman-cli"
-brew "starship" if OS.mac?
-brew "tmux" if OS.mac?
+brew "starship"
+brew "tmux"
 brew "tree-sitter-cli" if OS.mac?
 brew "watch" if OS.mac?
 brew "websocat" if OS.mac?
