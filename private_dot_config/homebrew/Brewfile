@@ -61,7 +61,6 @@ cask "karabiner-elements" if OS.mac?
 cask "kitty" if OS.mac?
 cask "logi-options+" if OS.mac?
 cask "obsidian" if OS.mac?
-cask "podman-desktop" if OS.mac?
 cask "postman" if OS.mac?
 cask "slack" if OS.mac?
 cask "spotify" if OS.mac?
