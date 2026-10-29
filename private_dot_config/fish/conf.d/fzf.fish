@@ -17,6 +17,3 @@ set -gx FZF_ALT_C_OPTS "--preview 'eza --tree --color=always {} | head -200'"
 set fzf_directory_opts --bind "ctrl-o:execute($EDITOR {} &> /dev/tty)"
 set fzf_fd_opts --hidden --max-depth 5
 set fzf_preview_dir_cmd eza --all --color=always --icons=always
-
-# configure fzf bindings, disable history (handled by atuin)
-fzf_configure_bindings --history=

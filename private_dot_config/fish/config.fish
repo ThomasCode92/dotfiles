@@ -9,7 +9,6 @@ echo y | fish_config theme save catppuccin-mocha >/dev/null 2>&1
 starship init fish | source
 zoxide init fish | source
 atuin init fish --disable-up-arrow | source
-fzf --fish | source
 carapace _carapace | source
 
 # enable transience, using starship
