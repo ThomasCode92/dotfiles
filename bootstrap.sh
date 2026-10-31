@@ -1,98 +1,50 @@
 #!/bin/bash
-set -e
+
+set -euo pipefail
+
+REPO_RAW="https://raw.githubusercontent.com/ThomasCode92/dotfiles/main"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# DOTFILES_LOCAL=1 -> use the scripts next to this file instead of downloading
+DOTFILES_LOCAL="${DOTFILES_LOCAL:-0}"
 
 echo "🚀 Setting up dotfiles"
 
 # ---------------------------------------------------------
-# Install and Configure Homebrew
+# Detect OS
 # ---------------------------------------------------------
-
-echo "🍺 Installing Homebrew"
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-if [[ "$(uname)" == "Darwin" ]]; then
+case "$(uname -s)" in
+Darwin)
+  SCRIPT="bootstrap-macos.sh"
   echo "🍎 macOS detected"
-  if [[ -f /opt/homebrew/bin/brew ]]; then
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-  elif [[ -f /usr/local/bin/brew ]]; then
-    eval "$(/usr/local/bin/brew shellenv)"
+  ;;
+Linux)
+  if [[ -f /etc/arch-release ]]; then
+    SCRIPT="bootstrap-arch.sh"
+    echo "🐧 Arch Linux detected"
+  else
+    echo "❌ Unsupported Linux distribution (only Arch is supported)"
+    exit 1
   fi
-
-elif [[ "$(uname)" == "Linux" ]]; then
-  echo "🐧 Linux detected"
-  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-
-else
+  ;;
+*)
   echo "❌ Unsupported operating system"
   exit 1
-fi
-
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  ;;
+esac
 
 # ---------------------------------------------------------
-# GPG
+# Run the OS-specific script (local copy or download)
 # ---------------------------------------------------------
-
-if ! command -v gpg &>/dev/null; then
-  echo "🍺 Installing GPG"
-  brew install gnupg
-fi
-
-if command -v gpg &>/dev/null; then
-  echo "✅ GPG is installed"
+if [[ "$DOTFILES_LOCAL" == "1" ]]; then
+  echo "📁 Using local $SCRIPT"
+  bash "$SCRIPT_DIR/$SCRIPT" "$@"
 else
-  echo "❌ GPG installation failed"
-  exit 1
+  TMP_SCRIPT="$(mktemp)"
+  trap 'rm -f "$TMP_SCRIPT"' EXIT
+
+  echo "⬇️ Downloading $SCRIPT"
+  curl -fsSL "$REPO_RAW/$SCRIPT" -o "$TMP_SCRIPT"
+
+  bash "$TMP_SCRIPT" "$@"
 fi
-
-echo "🗝️ Importing GPG keys"
-
-gpg --import "$HOME/privatekey.asc"
-gpg --import "$HOME/publickey.asc"
-
-export PASS_GPG_KEY="$(
-  gpg --list-keys \
-    --keyid-format long \
-    --with-colons |
-    awk -F: '$1 == "pub" { print $5; exit }'
-)"
-
-if [[ -z "$PASS_GPG_KEY" ]]; then
-  echo "❌ Could not determine GPG key"
-  exit 1
-fi
-
-echo "🔑 GPG key: $PASS_GPG_KEY"
-
-# ---------------------------------------------------------
-# Chezmoi
-# ---------------------------------------------------------
-
-echo "🍺 Installing chezmoi"
-brew install chezmoi
-
-if command -v chezmoi &>/dev/null; then
-  echo "✅ Chezmoi is installed"
-else
-  echo "❌ Chezmoi installation failed"
-  exit 1
-fi
-
-if [[ -d "$(chezmoi source-path)/.git" ]]; then
-  echo "ℹ️ Chezmoi already initialized"
-  chezmoi update
-  echo "✅ Chezmoi updated"
-  exit 0
-fi
-
-if [[ -z "${GITHUB_USERNAME:-}" ]]; then
-  echo "❌ GITHUB_USERNAME is not set"
-  exit 1
-fi
-
-echo "🔧 Initializing Chezmoi"
-
-chezmoi init "$GITHUB_USERNAME"
-chezmoi apply
-
-echo "✅ Dotfiles setup complete"
