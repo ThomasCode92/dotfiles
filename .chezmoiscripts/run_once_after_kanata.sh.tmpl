@@ -1,0 +1,51 @@
+#!/bin/bash
+set -euo pipefail
+
+config_dir={{ joinPath .chezmoi.homeDir ".config/kanata" | quote }}
+
+{{ if eq .chezmoi.os "linux" }}
+
+echo "📥 Installing Kanata"
+yay -S --needed kanata-bin
+
+mkdir -p "$HOME/.config/systemd/user"
+cp "$config_dir/kanata.service" "$HOME/.config/systemd/user/"
+
+echo "⚙️ Enabling and restarting Kanata"
+systemctl --user daemon-reload
+systemctl --user enable kanata.service
+systemctl --user restart kanata.service
+systemctl --user status kanata.service
+
+echo "✅ Kanata user service configured"
+
+{{ else if eq .chezmoi.os "darwin" }}
+
+# DriverKit 6.2.0 matches Kanata 1.12; upgrade them together.
+echo "📥 Installing standalone Karabiner driver"
+work_dir=$(mktemp -d)
+driver_pkg="$work_dir/driver.pkg"
+trap 'rm -f "$driver_pkg"; rmdir "$work_dir"' EXIT
+curl -fL --retry 3 -o "$driver_pkg" \
+  https://github.com/pqrs-org/Karabiner-DriverKit-VirtualHIDDevice/releases/download/v6.2.0/Karabiner-DriverKit-VirtualHIDDevice-6.2.0.pkg
+printf '%s  %s\n' "9e8c46239f0748161241e42444857901224e5c82f5b58a1731df4c70bf0736a8" "$driver_pkg" | shasum -a 256 -c -
+sudo installer -pkg "$driver_pkg" -target /
+sudo /Applications/.Karabiner-VirtualHIDDevice-Manager.app/Contents/MacOS/Karabiner-VirtualHIDDevice-Manager forceActivate
+
+echo "⚙️ Configuring Kanata and its Karabiner helper"
+sudo install -d -o root -g wheel -m 755 /Library/Logs/Kanata
+
+# Start the virtual keyboard helper before Kanata.
+for label in org.pqrs.Karabiner-VirtualHIDDevice-Daemon com.my.kanata; do
+  sudo install -o root -g wheel -m 644 "$config_dir/$label.plist" \
+    "/Library/LaunchDaemons/$label.plist"
+  sudo launchctl enable "system/$label"
+  if ! sudo launchctl print "system/$label" >/dev/null 2>&1; then
+    sudo launchctl bootstrap system "/Library/LaunchDaemons/$label.plist"
+  fi
+done
+
+echo "✅ Kanata and its helper services installed"
+echo "🔐 Allow Kanata in Privacy & Security > Input Monitoring."
+echo "🔐 Approve the driver and allow its background item in General > Login Items & Extensions."
+{{ end -}}
