@@ -1,0 +1,20 @@
+README.md
+
+# opencode
+opencode.json
+AGENTS.md
+
+# docs
+docs/
+
+# Ignore macOS-specific files on other operating systems
+{{ if ne .chezmoi.os "darwin" }}
+.config/aerospace
+
+.config/homebrew
+.config/fish/conf.d/homebrew.fish
+.chezmoiscripts/00-brew-bundle.sh
+
+.config/kanata/com.my.kanata.plist
+.config/kanata/org.pqrs.Karabiner-VirtualHIDDevice-Daemon.plist
+{{ end }}
