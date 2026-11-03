@@ -2,18 +2,22 @@
 
 # tool_versions hash: {{ include "dot_tool-versions" | sha256sum }}
 
-set -euo pipefail
+set -uo pipefail
+
+if ! command -v asdf >/dev/null 2>&1; then
+  echo "⚠️  asdf not found in PATH, skipping asdf setup."
+  exit 0
+fi
 
 # Path to the tool-versions file (default: .tool-versions in current dir)
 TOOL_VERSIONS_FILE="${1:-.tool-versions}"
 
 if [[ ! -f "$TOOL_VERSIONS_FILE" ]]; then
-  echo "❌ Error: file '$TOOL_VERSIONS_FILE' not found."
-  exit 1
+  echo "⚠️  '$TOOL_VERSIONS_FILE' not found, skipping asdf setup."
+  exit 0
 fi
 
 echo "📄 Reading tools from: $TOOL_VERSIONS_FILE"
-echo "----------------------------------------"
 
 plugins=$(asdf plugin list 2>/dev/null)
 
@@ -28,11 +32,14 @@ while IFS= read -r line || [[ -n "$line" ]]; do
   echo "🔧 Plugin: $plugin  Version: $version"
 
   # Add plugin if not already added
-  if grep -qx "$plugin" <<< "$plugins"; then
+  if grep -qx "$plugin" <<<"$plugins"; then
     echo "    ⏭️  Plugin '$plugin' already added."
   else
     echo "    ➕ Adding plugin '$plugin'..."
-    asdf plugin add "$plugin"
+    if ! asdf plugin add "$plugin"; then
+      echo "    ⚠️  Could not add plugin '$plugin', skipping."
+      continue
+    fi
   fi
 
   # Install the specific version
@@ -40,11 +47,12 @@ while IFS= read -r line || [[ -n "$line" ]]; do
     echo "    ⏭️  '$plugin $version' already installed."
   else
     echo "    📦 Installing '$plugin $version'..."
-    asdf install "$plugin" "$version"
+    if ! asdf install "$plugin" "$version"; then
+      echo "    ⚠️  Could not install '$plugin $version', continuing."
+    fi
   fi
 
 done <"$TOOL_VERSIONS_FILE"
 
 echo ""
-echo "----------------------------------------"
 echo "✅ Done. All plugins and versions processed."
