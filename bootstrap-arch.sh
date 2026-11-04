@@ -4,13 +4,10 @@ set -euo pipefail
 echo "🐧 Setting up dotfiles (Arch Linux)"
 
 # ---------------------------------------------------------
-# Packages & yay
+# Packages (& yay)
 # ---------------------------------------------------------
 echo "📦 Installing packages"
-sudo pacman -Sy --needed --noconfirm git curl gnupg chezmoi
-
-echo "📦 Installing yay (AUR helper)"
-git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
+sudo pacman -Syu --needed --noconfirm yay git curl gnupg chezmoi base-devel
 
 # ---------------------------------------------------------
 # GPG
@@ -21,6 +18,13 @@ else
   echo "❌ GPG installation failed"
   exit 1
 fi
+
+for key in privatekey.asc publickey.asc; do
+  if [[ ! -f "$HOME/$key" ]]; then
+    echo "❌ ~/$key is missing (see the prerequisites in README.md)"
+    exit 1
+  fi
+done
 
 echo "🗝️ Importing GPG keys"
 gpg --import "$HOME/privatekey.asc"
