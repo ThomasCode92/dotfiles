@@ -1,0 +1,31 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "ollama-cloud/gemma4:31b",
+  "providers": {
+    "ollama": {
+      "models": {
+        "qwen3.5:9b": { "name": "Qwen3.5:9b (local)" },
+        "qwen2.5:14b": { "name": "Qwen2.5:14b (local)" }
+      }
+    },
+    "ollama-cloud": {
+      "settings": {
+        "apiKey": "{env:OLLAMA_API_KEY}"
+      },
+      "models": {
+        "gemma4:31b": { "name": "Gemma4 (cloud)" }
+      }
+    }
+  },
+  "mcp": {
+    "servers": {
+      "context7": {
+        "type": "remote",
+        "url": "https://mcp.context7.com/mcp",
+        "headers": {
+          "CONTEXT7_API_KEY": "{env:CONTEXT7_API_KEY}"
+        }
+      }
+    }
+  }
+}
