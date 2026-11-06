@@ -1,0 +1,47 @@
+#!/bin/bash
+
+# Re-runs automatically whenever packages.txt changes.
+# packages.txt hash: {{ include "packages.txt" | sha256sum }}
+
+set -euo pipefail
+
+PACKAGES_FILE="{{ .chezmoi.sourceDir }}/packages.txt"
+
+if ! command -v pacman >/dev/null 2>&1; then
+  echo "pacman not found, skipping package installation."
+  exit 0
+fi
+
+# Print the packages listed under a given [section].
+parse_section() {
+  awk -v section="$1" '
+    /^[[:space:]]*(#|$)/ { next }
+    /^[[:space:]]*\[.*\][[:space:]]*$/ {
+      gsub(/^[[:space:]]*\[|\][[:space:]]*$/, "")
+      current = $0
+      next
+    }
+    current == section {
+      sub(/[[:space:]]*#.*/, "")
+      gsub(/^[[:space:]]+|[[:space:]]+$/, "")
+      if ($0 != "") print
+    }
+  ' "$PACKAGES_FILE"
+}
+
+mapfile -t pacman_pkgs < <(parse_section pacman)
+mapfile -t yay_pkgs < <(parse_section yay)
+
+if [ "${#pacman_pkgs[@]}" -gt 0 ]; then
+  echo "Installing ${#pacman_pkgs[@]} pacman packages..."
+  sudo pacman -S --needed --noconfirm "${pacman_pkgs[@]}"
+fi
+
+if [ "${#yay_pkgs[@]}" -gt 0 ]; then
+  if command -v yay >/dev/null 2>&1; then
+    echo "Installing ${#yay_pkgs[@]} AUR packages with yay..."
+    yay -S --needed --noconfirm "${yay_pkgs[@]}"
+  else
+    echo "yay not found, skipping AUR packages." >&2
+  fi
+fi

@@ -6,7 +6,7 @@ config_dir={{ joinPath .chezmoi.homeDir ".config/kanata" | quote }}
 {{ if eq .chezmoi.os "linux" }}
 
 echo "📥 Installing Kanata"
-yay -S --needed kanata-bin
+yay -S --needed --noconfirm kanata-bin
 
 mkdir -p "$HOME/.config/systemd/user"
 cp "$config_dir/kanata.service" "$HOME/.config/systemd/user/"
@@ -15,7 +15,7 @@ echo "⚙️ Enabling and restarting Kanata"
 systemctl --user daemon-reload
 systemctl --user enable kanata.service
 systemctl --user restart kanata.service
-systemctl --user status kanata.service
+systemctl --user status kanata.service --no-pager
 
 echo "✅ Kanata user service configured"
 

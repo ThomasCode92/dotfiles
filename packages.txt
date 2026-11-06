@@ -1,0 +1,25 @@
+# Packages managed by chezmoi.
+# Sections: [pacman] = official repos, [yay] = AUR.
+# One package per line; blank lines and # comments are ignored.
+
+[pacman]
+atuin
+bat
+eza
+fish
+kitty
+lazygit
+neovim
+obsidian
+opencode
+starship
+steam
+ttf-hack-nerd
+ttf-jetbrains-mono-nerd
+zoxide
+
+[yay]
+asdf-vm
+carapace-bin
+intellij-idea-ultimate-edition
+

@@ -9,12 +9,30 @@ docs/
 
 # Ignore macOS-specific files on other operating systems
 {{ if ne .chezmoi.os "darwin" }}
-.config/aerospace
-
-.config/homebrew
-.config/fish/conf.d/homebrew.fish
+## Scripts
+bootstrap-macos.sh
 .chezmoiscripts/00-brew-bundle.sh
 
+## Config
+.config/aerospace
+.config/homebrew
+.config/fish/conf.d/homebrew.fish
+
+## Kanata
 .config/kanata/com.my.kanata.plist
 .config/kanata/org.pqrs.Karabiner-VirtualHIDDevice-Daemon.plist
+{{ end }}
+
+# Ignore Linux specific files on other operating systems
+{{ if ne .chezmoi.os "linux" }}
+## Scripts
+bootstrap-arch.sh
+
+## Config
+packages.txt
+gnome_extensions.txt
+.chezmoiscripts/00-packages.sh
+
+## Kanata
+.config/kanata/kanata.service
 {{ end }}
