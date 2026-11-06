@@ -10,7 +10,6 @@ $directory\
 $git_branch\
 $git_status\
 [](fg:yellow bg:green)\
-$dotnet\
 $golang\
 $java\
 $nodejs\
@@ -31,13 +30,14 @@ disabled = false
 style = "bg:red fg:crust"
 
 [os.symbols]
-Alpine = ""
-Arch = "󰣇"
-Debian = "󰣚"
-Linux = "󰌽"
-Macos = "󰀵"
-Manjaro = ""
-Ubuntu = "󰕈"
+Alpine = " "
+Arch = "󰣇 "
+CachyOS = " "
+Debian = "󰣚 "
+Linux = "󰌽 "
+Macos = "󰀵 "
+Manjaro = " "
+Ubuntu = "󰕈 "
 
 [username]
 show_always = true
@@ -66,11 +66,6 @@ format = '[[ $symbol $branch ](fg:crust bg:yellow)]($style)'
 [git_status]
 style = "bg:yellow"
 format = '[[($all_status$ahead_behind )](fg:crust bg:yellow)]($style)'
-
-[dotnet]
-symbol = ""
-style = "bg:green"
-format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
 
 [golang]
 symbol = ""

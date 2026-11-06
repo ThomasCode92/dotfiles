@@ -1,10 +1,9 @@
 if status is-interactive
     # Commands to run in interactive sessions can go here
+    fish_config theme choose catppuccin-mocha --color-theme=dark
 end
 
 set -g fish_key_bindings fish_vi_key_bindings # vi mode
-
-echo y | fish_config theme save catppuccin-mocha >/dev/null 2>&1
 
 starship init fish | source
 zoxide init fish | source
