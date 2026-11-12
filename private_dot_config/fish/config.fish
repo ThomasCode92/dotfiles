@@ -13,9 +13,6 @@ carapace _carapace | source
 # enable transience, using starship
 enable_transience
 
-# update $PATH
-fish_add_path "$HOME/.opencode/bin"
-
 # environment variables
 set -gx PATH ~/.local/bin $PATH
 set -gx EDITOR nvim
