@@ -4,9 +4,23 @@
 
 set -uo pipefail
 
+# Install asdf, if not installed already
 if ! command -v asdf >/dev/null 2>&1; then
-  echo "⚠️  asdf not found in PATH, skipping asdf setup."
-  exit 0
+  echo "📥 Installing asdf"
+  {{ if eq .chezmoi.os "darwin" }}
+  brew install asdf
+  {{ else if eq .chezmoi.os "linux" }}
+  sudo yay -S asdf-vm
+  {{ else }}
+  echo "❌ Unsupported OS: {{ .chezmoi.os }}. Please install asdf manually."
+  exit 1
+  {{ end }}
+
+  if ! command -v asdf >/dev/null 2>&1; then
+    echo "❌ asdf installation failed."
+    exit 1
+  fi
+  echo "✅ asdf installed successfully"
 fi
 
 # Path to the tool-versions file (default: .tool-versions in current dir)

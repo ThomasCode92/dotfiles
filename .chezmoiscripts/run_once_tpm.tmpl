@@ -2,8 +2,9 @@
 
 TMUX_PLUGIN_DIR="$HOME/.tmux/plugins"
 
+# Install tmux, if not installed already
 if ! command -v tmux >/dev/null 2>&1; then
-  echo "📦 tmux not found, installing it..."
+  echo "📥 Installing tmux"
   {{ if eq .chezmoi.os "darwin" }}
   brew install tmux
   {{ else if eq .chezmoi.os "linux" }}
@@ -18,8 +19,6 @@ if ! command -v tmux >/dev/null 2>&1; then
     exit 1
   fi
   echo "✅ tmux installed successfully"
-else
-  echo "⏭️  tmux already installed, installation skipped"
 fi
 
 if [[ ! -e "$TMUX_PLUGIN_DIR/tpm" ]]; then
