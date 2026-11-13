@@ -4,6 +4,7 @@
 tap "sdkman/tap"
 tap "nikitabobko/tap"
 
+brew "act"
 brew "asdf"
 brew "atuin"
 brew "bat"

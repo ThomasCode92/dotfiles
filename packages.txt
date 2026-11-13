@@ -3,6 +3,7 @@
 # One package per line; blank lines and # comments are ignored.
 
 [pacman]
+act
 atuin
 bat
 eza
@@ -21,5 +22,6 @@ zoxide
 [yay]
 asdf-vm
 carapace-bin
+docker-desktop
 intellij-idea-ultimate-edition
 
