@@ -15,8 +15,9 @@ bootstrap-macos.sh
 
 ## Config
 .config/aerospace
-.config/homebrew
+.config/borders/bordersrc
 .config/fish/conf.d/homebrew.fish
+.config/homebrew
 
 ## Kanata
 .config/kanata/com.my.kanata.plist
@@ -27,12 +28,12 @@ bootstrap-macos.sh
 {{ if ne .chezmoi.os "linux" }}
 ## Scripts
 bootstrap-arch.sh
+.chezmoiscripts/00-packages.sh
 .chezmoiscripts/sdkman.sh
 
 ## Config
 packages.txt
 gnome_extensions.txt
-.chezmoiscripts/00-packages.sh
 
 ## Kanata
 .config/kanata/kanata.service

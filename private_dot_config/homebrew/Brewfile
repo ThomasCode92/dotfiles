@@ -3,11 +3,13 @@
 
 tap "sdkman/tap"
 tap "nikitabobko/tap"
+tap "FelixKratz/formulae", trusted: true
 
 brew "act"
 brew "asdf"
 brew "atuin"
 brew "bat"
+brew "borders"
 brew "btop"
 brew "carapace"
 brew "chezmoi"
