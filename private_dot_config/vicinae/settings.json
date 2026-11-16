@@ -1,0 +1,13 @@
+{
+  "$schema": "https://vicinae.com/schemas/config.json",
+  "font": {
+    "normal": {
+      "family": "JetBrainsMono Nerd Font Mono"
+    }
+  },
+  "theme": {
+    "dark": {
+      "name": "catppuccin-mocha"
+    }
+  }
+}
