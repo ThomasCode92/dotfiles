@@ -3,6 +3,7 @@
 
 tap "sdkman/tap"
 tap "nikitabobko/tap"
+tap "kamillobinski/thock", trusted: true
 tap "FelixKratz/formulae", trusted: true
 
 brew "act"
@@ -68,6 +69,7 @@ cask "obsidian"
 cask "postman"
 cask "slack"
 cask "spotify"
+cask "thock"
 cask "vicinae"
 cask "visual-studio-code"
 cask "whatsapp"
