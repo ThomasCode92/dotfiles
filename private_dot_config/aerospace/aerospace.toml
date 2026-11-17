@@ -9,6 +9,7 @@ config-version = 2
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
 after-startup-command = [
   "exec-and-forget borders",
+  "exec-and-forget sketchybar"
 ]
 
 # Start AeroSpace at login
@@ -73,7 +74,7 @@ on-mode-changed = []
     inner.vertical =   10
     outer.left =       10
     outer.bottom =     10
-    outer.top =        10
+    outer.top =        [{ monitor."built-in" = 10 }, 32]
     outer.right =      10
 
 # 'main' binding mode declaration
