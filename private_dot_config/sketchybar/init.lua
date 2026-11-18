@@ -1,3 +1,4 @@
+---@type Sketchybar
 sbar = require("sketchybar")
 
 sbar.begin_config()

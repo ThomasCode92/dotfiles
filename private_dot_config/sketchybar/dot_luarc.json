@@ -1,0 +1,4 @@
+{
+  "workspace.library": ["${workspaceFolder}/@types"],
+  "diagnostics.globals": ["sbar"]
+}
