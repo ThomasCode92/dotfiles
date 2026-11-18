@@ -6,30 +6,30 @@ local settings = require("settings")
 sbar.add("item", { width = 5 })
 
 local apple = sbar.add("item", {
-  icon = {
-    font = { family = settings.font.icons, style = "Bold", size = 16.0 },
-    string = icons.apple,
-    padding_right = 8,
-    padding_left = 8,
-  },
-  label = { drawing = false },
-  background = {
-    color = colors.bg2,
-    border_color = colors.black,
-    border_width = 1
-  },
-  padding_left = 1,
-  padding_right = 1,
-  -- TODO: Add the upstream menus helper and click_script to open the Apple menu.
+	icon = {
+		font = { family = settings.font.icons, style = "Bold", size = 16.0 },
+		string = icons.apple,
+		padding_right = 8,
+		padding_left = 8,
+	},
+	label = { drawing = false },
+	background = {
+		color = colors.bg2,
+		border_color = colors.black,
+		border_width = 1,
+	},
+	padding_left = 1,
+	padding_right = 1,
+	-- TODO: Add the upstream menus helper and click_script to open the Apple menu.
 })
 
 -- Double border for apple using a single item bracket
 sbar.add("bracket", { apple.name }, {
-  background = {
-    color = colors.transparent,
-    height = 30,
-    border_color = colors.grey,
-  }
+	background = {
+		color = colors.transparent,
+		height = 30,
+		border_color = colors.grey,
+	},
 })
 
 -- Padding item required because of bracket
