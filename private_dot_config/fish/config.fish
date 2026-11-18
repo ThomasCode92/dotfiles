@@ -3,10 +3,14 @@ if status is-interactive
     fish_config theme choose catppuccin-mocha --color-theme=dark
 end
 
+fzf_configure_bindings --git_log=ctrl-alt-g --variables=ctrl-alt-v
+
 starship init fish | source
 zoxide init fish | source
 atuin init fish --disable-up-arrow | source
 carapace _carapace | source
+
+enable_transience
 
 # environment variables
 set -gx PATH ~/.local/bin $PATH
@@ -19,9 +23,6 @@ set -g fzf_directory_opts --bind "ctrl-o:execute($EDITOR {} &> /dev/tty)"
 set fzf_fd_opts --hidden --max-depth 5
 set fzf_preview_dir_cmd eza --all --color=always --icons=always
 
-enable_transience
-fzf_configure_bindings --git_log=ctrl-alt-g --variables=ctrl-alt-v
-
 # remove duplicate and missing PATH entries
 set -l clean_path
 for dir in $PATH
@@ -32,7 +33,9 @@ end
 set -gx PATH $clean_path
 
 # aliases
-alias lz="eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions"
-alias lg="lazygit"
+alias c="chezmoi"
 alias ld="lazydocker"
+alias lg="lazygit"
+alias lz="eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions"
+alias n="nvim"
 alias wm="workmux"
