@@ -74,7 +74,7 @@ on-mode-changed = []
     inner.vertical =   10
     outer.left =       10
     outer.bottom =     10
-    outer.top =        [{ monitor."built-in" = 10 }, 32]
+    outer.top =        [{ monitor."built-in" = 10 }, 40]
     outer.right =      10
 
 # 'main' binding mode declaration
@@ -180,6 +180,9 @@ on-mode-changed = []
     alt-shift-j = ['join-with down', 'mode main']
     alt-shift-k = ['join-with up', 'mode main']
     alt-shift-l = ['join-with right', 'mode main']
+
+    # Reload SketchyBar
+    alt-shift-r = 'exec-and-forget sh -c "pgrep -x sketchybar >/dev/null && sketchybar --reload || sketchybar"'
 
 [[on-window-detected]]
 if.app-id = 'net.kovidgoyal.kitty'
