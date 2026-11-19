@@ -29,7 +29,9 @@ local mocha = {
 }
 
 local function with_alpha(color, alpha)
-	return (color & 0x00ffffff) | (alpha << 24)
+	-- Accept both byte values (0xc0) and fractional opacity (0.6)
+	if alpha >= 0 and alpha <= 1 then alpha = alpha * 255 end
+	return (color & 0x00ffffff) | (math.floor(alpha) << 24)
 end
 
 return {
@@ -53,6 +55,10 @@ return {
 
 	bar = {
 		bg = with_alpha(mocha.surface0, 0xf0),
+	},
+
+	media = {
+		artist = with_alpha(mocha.text, 0.6),
 	},
 
 	spaces = {
