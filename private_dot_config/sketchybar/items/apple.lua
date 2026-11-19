@@ -20,8 +20,15 @@ local apple = sbar.add("item", {
 	},
 	padding_left = 1,
 	padding_right = 1,
-	-- TODO: Add the upstream menus helper and click_script to open the Apple menu.
 })
+
+apple:subscribe("mouse.clicked", function(env)
+	if env.BUTTON == "right" then
+		sbar.trigger("swap_menus_and_spaces")
+	else
+		sbar.exec('"$CONFIG_DIR/helpers/menus/bin/menus" -s 0')
+	end
+end)
 
 -- Double border for apple using a single item bracket
 sbar.add("bracket", { apple.name }, {
@@ -34,3 +41,5 @@ sbar.add("bracket", { apple.name }, {
 
 -- Padding item required because of bracket
 sbar.add("item", { width = 7 })
+
+return apple
