@@ -17,10 +17,14 @@ local menu_toggle = sbar.add("item", {
 	updates = true,
 })
 sbar.add("event", "swap_menus_and_spaces")
+sbar.add("event", "reveal_app_menus")
+sbar.add("event", "open_app_menu")
 
 local max_items = 15
 local menu_items = {}
 local menus_visible = false
+local menus_expanded = false
+local pending_open_app_menu = false
 local menu_request = 0
 local hovered_menu = nil
 local selected_menu = nil
@@ -103,7 +107,7 @@ local menu_padding = sbar.add("item", "menu.padding", {
 })
 
 local function update_menus()
-	if not menus_visible then
+	if not menus_visible or not menus_expanded then
 		return
 	end
 	menu_request = menu_request + 1
@@ -111,13 +115,13 @@ local function update_menus()
 	reset_menu_styles()
 	local function render_menus(menus, exit_code, geometry)
 		-- Ignore results from an older app or a menu view that has been closed.
-		if not menus_visible or request ~= menu_request then
+		if not menus_visible or not menus_expanded or request ~= menu_request then
 			return
 		end
 		sbar.set("/menu\\..*/", { drawing = false })
 		menu_anchor:set({ drawing = false })
 		if exit_code ~= 0 or type(menus) ~= "table" or #menus == 0 then
-			menus_visible = false
+			menus_expanded = false
 			set_compact_apple(false)
 			menu_watcher:set({ updates = false })
 			sbar.set("front_app", { drawing = true })
@@ -168,8 +172,7 @@ local function update_menus()
 		if not menus_visible or request ~= menu_request then
 			return
 		end
-		if exit_code == 0 and type(geometry) == "table" and type(geometry.items) == "table"
-			and #geometry.items > 0 then
+		if exit_code == 0 and type(geometry) == "table" and type(geometry.items) == "table" and #geometry.items > 0 then
 			render_menus(geometry.items, 0, geometry)
 		else
 			-- Keep the original layout if native geometry is unavailable.
@@ -186,23 +189,45 @@ local function update_menus()
 	end)
 end
 
+local function reveal_menus()
+	if not menus_visible or menus_expanded then
+		return
+	end
+	menus_expanded = true
+	menu_watcher:set({ updates = true })
+	sbar.set("front_app", { drawing = false })
+	update_menus()
+end
+
 menu_watcher:subscribe("front_app_switched", update_menus)
 
 menu_toggle:subscribe("swap_menus_and_spaces", function()
 	menus_visible = not menus_visible
+	menus_expanded = false
+	menu_request = menu_request + 1
+	set_compact_apple(false)
+	reset_menu_styles()
+	menu_anchor:set({ drawing = false })
+	menu_watcher:set({ updates = false })
+	sbar.set("/menu\\..*/", { drawing = false })
+	sbar.set("front_app", { drawing = menus_visible })
 	if not menus_visible then
-		menu_request = menu_request + 1
-		set_compact_apple(false)
-		reset_menu_styles()
-		menu_anchor:set({ drawing = false })
-		menu_watcher:set({ updates = false })
-		sbar.set("/menu\\..*/", { drawing = false })
-		sbar.set("front_app", { drawing = true })
-	else
-		menu_watcher:set({ updates = true })
-		sbar.set("front_app", { drawing = false })
-		update_menus()
+		pending_open_app_menu = false
+	elseif pending_open_app_menu then
+		pending_open_app_menu = false
+		reveal_menus()
 	end
+end)
+
+menu_toggle:subscribe("reveal_app_menus", reveal_menus)
+
+menu_toggle:subscribe("open_app_menu", function()
+	if not menus_visible then
+		pending_open_app_menu = true
+		sbar.trigger("swap_menus_and_spaces")
+		return
+	end
+	reveal_menus()
 end)
 
 return menu_watcher

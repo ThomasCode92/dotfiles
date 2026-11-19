@@ -54,4 +54,11 @@ return {
 	bar = {
 		bg = with_alpha(mocha.surface0, 0xf0),
 	},
+
+	spaces = {
+		indicator = {
+			bg = with_alpha(mocha.overlay1, 0.0),
+			border = with_alpha(mocha.surface0, 0.0),
+		},
+	},
 }

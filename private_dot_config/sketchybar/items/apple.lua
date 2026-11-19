@@ -24,9 +24,10 @@ local apple = sbar.add("item", {
 
 apple:subscribe("mouse.clicked", function(env)
 	if env.BUTTON == "right" then
-		sbar.trigger("swap_menus_and_spaces")
+		sbar.trigger("open_app_menu")
 	else
 		sbar.exec('"$CONFIG_DIR/helpers/menus/bin/menus" -s 0')
+		sbar.trigger("open_app_menu")
 	end
 end)
 

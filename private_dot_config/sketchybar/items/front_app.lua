@@ -10,6 +10,7 @@ local front_app = sbar.add("item", "front_app", {
 		},
 	},
 	updates = true,
+	drawing = false,
 })
 
 front_app:subscribe("front_app_switched", function(env)
@@ -17,5 +18,5 @@ front_app:subscribe("front_app_switched", function(env)
 end)
 
 front_app:subscribe("mouse.clicked", function()
-	sbar.trigger("swap_menus_and_spaces")
+	sbar.trigger("reveal_app_menus")
 end)

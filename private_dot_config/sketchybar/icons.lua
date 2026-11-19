@@ -87,6 +87,25 @@ local icons = {
 	},
 }
 
+-- App brand glyphs (Nerd Font). These are rendered with the text font in
+-- aerospace.lua, so they stay the same for both icon styles in settings.icons.
+local app_icons = {
+	firefox = "",
+	intellij = "",
+	obsidian = "",
+	postman = "",
+	slack = "",
+	spotify = "",
+	kitty = "",
+	discord = "",
+	whatsapp = "",
+	chrome = "",
+	safari = "",
+}
+
+icons.sf_symbols.apps = app_icons
+icons.nerdfont.apps = app_icons
+
 if not (settings.icons == "NerdFont") then
 	return icons.sf_symbols
 else
