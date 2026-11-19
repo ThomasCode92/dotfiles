@@ -1,0 +1,6 @@
+build:
+    mkdir -p bin
+    clang -std=c99 -O3 network_load.c -o bin/network_load
+
+clean:
+    rm -rf bin
