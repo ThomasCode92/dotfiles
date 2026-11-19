@@ -1,0 +1,6 @@
+build:
+    mkdir -p bin
+    clang -std=c99 -O3 cpu_load.c -o bin/cpu_load
+
+clean:
+    rm -rf bin
