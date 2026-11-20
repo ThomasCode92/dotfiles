@@ -1,4 +1,5 @@
 README.md
+cspell.json
 
 # opencode
 opencode.json
@@ -25,6 +26,10 @@ bootstrap-macos.sh
 ## Kanata
 .config/kanata/com.my.kanata.plist
 .config/kanata/org.pqrs.Karabiner-VirtualHIDDevice-Daemon.plist
+{{ else }}
+# macOS: ignore local build artifacts
+.config/sketchybar/helpers/event_providers/*/bin
+.config/sketchybar/helpers/menus/bin
 {{ end }}
 
 # Ignore Linux specific files on other operating systems
