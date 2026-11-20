@@ -59,6 +59,7 @@ return {
 
 	media = {
 		artist = with_alpha(mocha.text, 0.6),
+		overlay = with_alpha(mocha.base, 0x99),
 	},
 
 	spaces = {

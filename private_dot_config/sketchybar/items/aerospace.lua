@@ -26,6 +26,7 @@ local app_icons = {
 }
 
 sbar.add("event", "aerospace_workspace_change")
+sbar.add("event", "aerospace_mode_change")
 
 local function trim(value)
 	if type(value) ~= "string" then
@@ -214,6 +215,27 @@ local spaces_indicator = sbar.add("item", "aerospace.switch", {
 	},
 })
 
+local service_indicator = sbar.add("item", "aerospace.service", {
+	drawing = false,
+	padding_left = 4,
+	padding_right = 0,
+	icon = {
+		font = { family = settings.font.icons, style = "Bold", size = 14.0 },
+		padding_left = 2,
+		padding_right = 2,
+		color = colors.orange,
+		string = icons.service,
+	},
+	label = { drawing = false },
+	background = { drawing = false },
+})
+
+local function update_service_mode()
+	sbar.exec("aerospace list-modes --current", function(output)
+		service_indicator:set({ drawing = trim(output) == "service" })
+	end)
+end
+
 local workspace_observer = sbar.add("item", {
 	drawing = false,
 	updates = true,
@@ -221,7 +243,11 @@ local workspace_observer = sbar.add("item", {
 })
 
 workspace_observer:subscribe("aerospace_workspace_change", update_focus)
-workspace_observer:subscribe({ "front_app_switched", "routine" }, update_workspace_labels)
+workspace_observer:subscribe({ "front_app_switched", "routine" }, function()
+	update_workspace_labels()
+	update_service_mode()
+end)
+workspace_observer:subscribe("aerospace_mode_change", update_service_mode)
 
 workspace_observer:subscribe("swap_menus_and_spaces", function()
 	spaces_visible = not spaces_visible
@@ -266,6 +292,7 @@ spaces_indicator:subscribe("mouse.clicked", function()
 	sbar.trigger("swap_menus_and_spaces")
 end)
 
+update_service_mode()
 refresh()
 
 return workspace_observer
