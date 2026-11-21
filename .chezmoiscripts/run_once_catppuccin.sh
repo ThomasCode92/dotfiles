@@ -19,3 +19,9 @@ echo "🎨 Setting up tmux"
 DIR="${XDG_CONFIG_HOME:-$HOME/.config}/tmux/plugins/catppuccin/tmux"
 rm -rf "$DIR" && mkdir -p "$DIR"
 git clone -b v2.3.0 https://github.com/catppuccin/tmux.git "$DIR"
+
+echo "📊 Setting up btop themes"
+BTOP_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/btop"
+mkdir -p "$BTOP_DIR/themes"
+curl -sL https://github.com/catppuccin/btop/releases/latest/download/themes.tar.gz |
+  tar xz -C "$BTOP_DIR/themes" --strip-components=1
