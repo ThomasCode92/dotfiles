@@ -93,6 +93,7 @@ local icons = {
 -- aerospace.lua, so they stay the same for both icon styles in settings.icons.
 local app_icons = {
 	firefox = "",
+	finder = "󰀶",
 	intellij = "",
 	obsidian = "",
 	postman = "",

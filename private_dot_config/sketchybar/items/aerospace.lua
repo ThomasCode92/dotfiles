@@ -13,6 +13,7 @@ local focused_workspace = nil
 
 local app_icons = {
 	{ match = "Firefox", icon = icons.apps.firefox },
+	{ match = "Finder", icon = icons.apps.finder },
 	{ match = "IntelliJ", icon = icons.apps.intellij },
 	{ match = "Obsidian", icon = icons.apps.obsidian },
 	{ match = "Postman", icon = icons.apps.postman },
