@@ -28,26 +28,34 @@ def now_playing():
     }
     artwork = raw.get(prefix + "ArtworkData") if app else None
     if artwork:
-        data = base64.b64decode(artwork)
-        digest = hashlib.sha256(data).hexdigest()
-        cache = Path(os.environ.get("XDG_CACHE_HOME", Path.home() / ".cache")) / "sketchybar"
-        cache.mkdir(parents=True, exist_ok=True)
-        cover = cache / "media-cover.png"
-        stamp = cache / "media-cover.sha256"
-        if not cover.exists() or not stamp.exists() or stamp.read_text() != digest:
-            with tempfile.TemporaryDirectory(prefix="media-", dir=cache) as directory:
-                source = Path(directory) / "source"
-                resized = Path(directory) / "cover.png"
-                source.write_bytes(data)
-                subprocess.run(
-                    ["/usr/bin/sips", "-s", "format", "png", "-z", "28", "28",
-                     str(source), "--out", str(resized)],
-                    capture_output=True, check=True, timeout=5,
-                )
-                resized.replace(cover)
-            stamp.write_text(digest)
-        info.update(artwork=str(cover), artwork_id=digest)
+        try:
+            info.update(cache_artwork(artwork))
+        except (OSError, ValueError, subprocess.SubprocessError):
+            # A bad image must not discard otherwise valid playback metadata.
+            pass
     return info
+
+
+def cache_artwork(artwork):
+    data = base64.b64decode(artwork)
+    digest = hashlib.sha256(data).hexdigest()
+    cache = Path(os.environ.get("XDG_CACHE_HOME", Path.home() / ".cache")) / "sketchybar"
+    cache.mkdir(parents=True, exist_ok=True)
+    cover = cache / "media-cover.png"
+    stamp = cache / "media-cover.sha256"
+    if not cover.exists() or not stamp.exists() or stamp.read_text() != digest:
+        with tempfile.TemporaryDirectory(prefix="media-", dir=cache) as directory:
+            source = Path(directory) / "source"
+            resized = Path(directory) / "cover.png"
+            source.write_bytes(data)
+            subprocess.run(
+                ["/usr/bin/sips", "-s", "format", "png", "-z", "28", "28",
+                 str(source), "--out", str(resized)],
+                capture_output=True, check=True, timeout=5,
+            )
+            resized.replace(cover)
+        stamp.write_text(digest)
+    return {"artwork": str(cover), "artwork_id": digest}
 
 
 try:

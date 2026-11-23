@@ -92,6 +92,19 @@ end
 
 local previous = {}
 local function update_media(info)
+	-- Spotify sometimes omits artwork and folds the artist into the title.
+	-- Only reuse the last cover when the metadata still identifies that track.
+	if info.app == previous.app then
+		if previous.title and previous.artist and previous.artist ~= ""
+			and info.title == previous.title .. " • " .. previous.artist then
+			info.title = previous.title
+			info.artist = previous.artist
+		end
+		if info.title == previous.title and info.artist == previous.artist and not info.artwork then
+			info.artwork = previous.artwork
+			info.artwork_id = previous.artwork_id
+		end
+	end
 	local playing = info.state == "playing"
 	local drawing = whitelist[info.app] == true
 	media_artist:set({ drawing = drawing, label = info.artist or "" })
@@ -100,10 +113,10 @@ local function update_media(info)
 	if info.artwork and info.artwork_id ~= previous.artwork_id then
 		media_cover:set({ background = { image = { string = info.artwork, scale = 1 } } })
 	end
-	-- Show a play/pause overlay while paused, or as a fallback without artwork.
+	-- Missing artwork does not mean playback is paused.
 	media_cover:set({
 		icon = {
-			drawing = drawing and (not playing or not info.artwork),
+			drawing = drawing and not playing,
 			string = icons.media.play_pause,
 			font = { family = settings.font.icons },
 			color = colors.white,
