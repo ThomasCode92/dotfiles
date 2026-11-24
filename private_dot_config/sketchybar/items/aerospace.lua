@@ -21,7 +21,7 @@ local app_icons = {
 	{ match = "Spotify", icon = icons.apps.spotify },
 	{ match = "kitty", icon = icons.apps.kitty },
 	{ match = "Discord", icon = icons.apps.discord },
-	{ match = "WhatsApp", icon = icons.apps.whatsapp },
+	{ match = "Beeper", icon = icons.apps.beeper },
 	{ match = "Chrome", icon = icons.apps.chrome },
 	{ match = "Safari", icon = icons.apps.safari },
 }

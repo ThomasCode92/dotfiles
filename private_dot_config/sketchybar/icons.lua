@@ -101,7 +101,7 @@ local app_icons = {
 	spotify = "",
 	kitty = "",
 	discord = "",
-	whatsapp = "",
+	beeper = "󰭹", -- nf-md-chat (U+F0B79)
 	chrome = "",
 	safari = "",
 }
