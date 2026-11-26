@@ -21,6 +21,7 @@ zoxide
 
 [yay]
 asdf-vm
+beeper-bin
 carapace-bin
 docker-desktop
 intellij-idea-ultimate-edition
