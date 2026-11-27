@@ -25,4 +25,5 @@ beeper-bin
 carapace-bin
 docker-desktop
 intellij-idea-ultimate-edition
+workmux-bin
 
